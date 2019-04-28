@@ -1,0 +1,27 @@
+project = '@ROCK_NAME@'
+version = '@ROCK_VERSION@'
+title = '@ROCK_NAME@ @ROCK_VERSION@'
+description = 'Core libraries for LDK'
+dir = '../docs'
+file = {
+  '../src/ldk/array.lua',
+  '../src/ldk/debugx.lua',
+  '../src/ldk/func.lua',
+  '../src/ldk/stringx.lua',
+  '../src/ldk/tablex.lua',
+}
+format = 'markdown'
+no_lua_ref = true
+convert_opt = true
+sort = true
+sort_modules = true
+no_space_before_args = true
+merge = false
+backtick_references = false
+style = '!pale'
+template = '.'
+custom_tags = {
+  { 'remark', title = 'Remarks' }
+}
+new_type('ftype', 'Function Types')
+new_type('array', 'Arrays')

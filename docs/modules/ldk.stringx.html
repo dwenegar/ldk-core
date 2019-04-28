@@ -1,0 +1,909 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>ldk-core 0.1.0</title>
+    <link rel="stylesheet" href="../ldoc_pale.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>ldk-core</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Function_Types">Function Types</a></li>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/ldk.array.html">ldk.array</a></li>
+  <li><a href="../modules/ldk.debugx.html">ldk.debugx</a></li>
+  <li><a href="../modules/ldk.func.html">ldk.func</a></li>
+  <li><strong>ldk.stringx</strong></li>
+  <li><a href="../modules/ldk.tablex.html">ldk.tablex</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>ldk.stringx</code></h1>
+<p>Extensions to the <code>string</code> module.</p>
+<p>
+
+</p>
+
+
+<h2><a href="#Function_Types">Function Types</a></h2>
+<table class="function_list">
+  <tr>
+  <td class="name" nowrap><a href="#consumer">consumer</a></td>
+  <td class="summary">signature of a <a href="../modules/ldk.stringx.html#foreach">foreach</a> or <a href="../modules/ldk.stringx.html#foreachline">foreachline</a> callback function</td>
+  </tr>
+</table>
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+  <tr>
+  <td class="name" nowrap><a href="#F">F(s, values)</a></td>
+  <td class="summary">The formatted string interpolator; it inserts its arguments between
+ corresponding parts of the pattern.</td>
+  </tr>
+  <tr>
+  <td class="name" nowrap><a href="#S">S(s, values)</a></td>
+  <td class="summary">Simple string interpolator; it inserts its arguments between corresponding
+ parts of a pattern.</td>
+  </tr>
+  <tr>
+  <td class="name" nowrap><a href="#chars">chars(s[, a])</a></td>
+  <td class="summary">Creates an array with the characters of a string.</td>
+  </tr>
+  <tr>
+  <td class="name" nowrap><a href="#delete">delete(s, p[, plain])</a></td>
+  <td class="summary">Returns a copy of <code>s' with all characters in</code>x` deleted.</td>
+  </tr>
+  <tr>
+  <td class="name" nowrap><a href="#endswith">endswith(s, p[, plain])</a></td>
+  <td class="summary">Determines whether a string ends with a spcified pattern.</td>
+  </tr>
+  <tr>
+  <td class="name" nowrap><a href="#findr">findr(s, p, init[, plain=`%s`])</a></td>
+  <td class="summary">Searches a string for the last occurrence of the specified pattern.</td>
+  </tr>
+  <tr>
+  <td class="name" nowrap><a href="#foreach">foreach(s[, sep=' '[, maxn]], f)</a></td>
+  <td class="summary">Splits the string <code>s</code> into substring divided by the given separator <code>sep</code>
+ and invoke <code>f</code> with each of them.</td>
+  </tr>
+  <tr>
+  <td class="name" nowrap><a href="#foreachline">foreachline(s[, maxn], f)</a></td>
+  <td class="summary">Splits the string <code>s</code> into lines and invoke <code>f</code> with each of them.</td>
+  </tr>
+  <tr>
+  <td class="name" nowrap><a href="#insert">insert(s, x[, position])</a></td>
+  <td class="summary">Inserts <code>x</code> before the character at the given <code>position</code> in <code>s</code>.</td>
+  </tr>
+  <tr>
+  <td class="name" nowrap><a href="#lines">lines(s[, maxn])</a></td>
+  <td class="summary">Returns an array containing the string <code>s</code> split into lines.</td>
+  </tr>
+  <tr>
+  <td class="name" nowrap><a href="#partition">partition(s, sep[, plain])</a></td>
+  <td class="summary">Searches <code>sep</code> in the string <code>s</code> from the beginning of the string and returns
+ the part before it, the match, and the part after it.</td>
+  </tr>
+  <tr>
+  <td class="name" nowrap><a href="#partitionr">partitionr(s, sep[, plain])</a></td>
+  <td class="summary">Searches <code>sep</code> in the string <code>s</code> from the end of the string and returns
+ the part before it, the match, and the part after it.</td>
+  </tr>
+  <tr>
+  <td class="name" nowrap><a href="#split">split(s[, sep='%s+'[, maxn]])</a></td>
+  <td class="summary">Splits a string into substring based on a specified separator.</td>
+  </tr>
+  <tr>
+  <td class="name" nowrap><a href="#squeeze">squeeze(s, p[, plain])</a></td>
+  <td class="summary">Returns the string <code>s</code> with all the runs of the characters in <code>x</code>
+ replaced with a single character.</td>
+  </tr>
+  <tr>
+  <td class="name" nowrap><a href="#startswith">startswith(s, p[, plain])</a></td>
+  <td class="summary">Determines whether a string begins with a spcified pattern.</td>
+  </tr>
+  <tr>
+  <td class="name" nowrap><a href="#translate">translate(s, from, to)</a></td>
+  <td class="summary">Returns a new string with characters in <code>from</code> replaced with the
+ corresponding characters in <code>to</code>.</td>
+  </tr>
+  <tr>
+  <td class="name" nowrap><a href="#trim">trim(s[, p=`%s`])</a></td>
+  <td class="summary">Removes all the leading and trailing occurrences of a specified pattern
+ from a string.</td>
+  </tr>
+  <tr>
+  <td class="name" nowrap><a href="#triml">triml(s[, p=`%s`])</a></td>
+  <td class="summary">Removes all the leading occurrences of a specified pattern from a string.</td>
+  </tr>
+  <tr>
+  <td class="name" nowrap><a href="#trimr">trimr(s[, p=`%s`])</a></td>
+  <td class="summary">Removes all the trailing occurrences of a specified pattern from a string.</td>
+  </tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Function_Types"></a>Function Types</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "consumer"></a>
+    <strong>consumer</strong>
+    </dt>
+    <dd>
+    signature of a <a href="../modules/ldk.stringx.html#foreach">foreach</a> or <a href="../modules/ldk.stringx.html#foreachline">foreachline</a> callback function
+
+    </ul>
+
+    <ul>
+        <li><span class="parameter">s</span>
+            <span class="types"><span class="type">string</span></span>
+         a string
+        </li>
+    </ul>
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <li><a href="../modules/ldk.stringx.html#foreach">foreach</a></li>
+         <li><a href="../modules/ldk.stringx.html#foreachline">foreachline</a></li>
+    </ul>
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "F"></a>
+    <strong>F(s, values)</strong>
+    </dt>
+    <dd>
+    The formatted string interpolator; it inserts its arguments between
+ corresponding parts of the pattern.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">s</span>
+            <span class="types"><span class="type">string</span></span>
+         a pattern to interpolate.
+        </li>
+        <li><span class="parameter">values</span>
+            <span class="types"><span class="type">table</span></span>
+         the arguments to be replaced.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">string</span></span>
+        the formatted string.
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="global">print</span>(F(<span class="string">"$height%2.2f"</span>, { height = <span class="number">1.9</span> }))</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "S"></a>
+    <strong>S(s, values)</strong>
+    </dt>
+    <dd>
+    Simple string interpolator; it inserts its arguments between corresponding
+ parts of a pattern.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">s</span>
+            <span class="types"><span class="type">string</span></span>
+         a pattern to interpolate.
+        </li>
+        <li><span class="parameter">values</span>
+            <span class="types"><span class="type">table</span></span>
+         the arguments to be replaced.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">string</span></span>
+        the formatted string.
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="global">print</span>(S(<span class="string">"Hello, $name"</span>, { name = <span class="string">'James'</span> })))</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "chars"></a>
+    <strong>chars(s[, a])</strong>
+    </dt>
+    <dd>
+    Creates an array with the characters of a string.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">s</span>
+            <span class="types"><span class="type">string</span></span>
+         a string to be divided into characters.
+        </li>
+        <li><span class="parameter">a</span>
+            <span class="types"><span class="type">table</span></span>
+         a table where to store the characters.
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">{string}</span></span>
+        an table with the characters of <code>s</code>.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "delete"></a>
+    <strong>delete(s, p[, plain])</strong>
+    </dt>
+    <dd>
+    Returns a copy of <code>s' with all characters in</code>x` deleted.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">s</span>
+            <span class="types"><span class="type">string</span></span>
+         the string.
+        </li>
+        <li><span class="parameter">p</span>
+            <span class="types"><span class="type">string</span></span>
+         the pattern representing the characters to delete.
+        </li>
+        <li><span class="parameter">plain</span>
+            <span class="types"><span class="type">boolean</span></span>
+         if <code>true</code> the pattern is considered a plain string.
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">string</span></span>
+        the new string with the characters deleted.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "endswith"></a>
+    <strong>endswith(s, p[, plain])</strong>
+    </dt>
+    <dd>
+    Determines whether a string ends with a spcified pattern.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">s</span>
+            <span class="types"><span class="type">string</span></span>
+         the string to be tested.
+        </li>
+        <li><span class="parameter">p</span>
+            <span class="types"><span class="type">string</span></span>
+         the pattern to search for; the pattern must not contain
+ neither captures nor anchors.
+        </li>
+        <li><span class="parameter">plain</span>
+            <span class="types"><span class="type">boolean</span></span>
+         if <code>true</code> the pattern is considered a plain string.
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+        <code>true</code> if the pattern is found at the end of the
+ input string.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "findr"></a>
+    <strong>findr(s, p, init[, plain=`%s`])</strong>
+    </dt>
+    <dd>
+    Searches a string for the last occurrence of the specified pattern.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">s</span>
+            <span class="types"><span class="type">string</span></span>
+         the string to be searched.
+        </li>
+        <li><span class="parameter">p</span>
+            <span class="types"><span class="type">string</span></span>
+         the pattern to search for.
+        </li>
+        <li><span class="parameter">init</span>
+            <span class="types"><span class="type">integer</span></span>
+         the index  where to start the search.
+        </li>
+        <li><span class="parameter">plain</span>
+            <span class="types"><span class="type">boolean</span></span>
+         if <code>true</code> the pattern is considered a plain string.
+         (<em>default</em> `%s`)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">integer</span></span>
+        the index where the pattern starts.</li>
+        <li>
+           <span class="types"><span class="type">integer</span></span>
+        the index where the pattern ends.</li>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "foreach"></a>
+    <strong>foreach(s[, sep=' '[, maxn]], f)</strong>
+    </dt>
+    <dd>
+    Splits the string <code>s</code> into substring divided by the given separator <code>sep</code>
+ and invoke <code>f</code> with each of them.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">s</span>
+            <span class="types"><span class="type">string</span></span>
+         the string.
+        </li>
+        <li><span class="parameter">sep</span>
+            <span class="types"><span class="type">string</span></span>
+         the separator.
+         (<em>default</em> ' ')
+        </li>
+        <li><span class="parameter">maxn</span>
+            <span class="types"><span class="type">integer</span></span>
+         the maximum number of strings to process.
+         (<em>optional</em>)
+        </li>
+        <li><span class="parameter">f</span>
+            <span class="types"><a class="type" href="../modules/ldk.stringx.html#consumer">consumer</a></span>
+         the function to invoke.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "foreachline"></a>
+    <strong>foreachline(s[, maxn], f)</strong>
+    </dt>
+    <dd>
+    Splits the string <code>s</code> into lines and invoke <code>f</code> with each of them.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">s</span>
+            <span class="types"><span class="type">string</span></span>
+         the string.
+        </li>
+        <li><span class="parameter">maxn</span>
+            <span class="types"><span class="type">integer</span></span>
+         the maximum number of lines to process.
+         (<em>optional</em>)
+        </li>
+        <li><span class="parameter">f</span>
+            <span class="types"><a class="type" href="../modules/ldk.stringx.html#consumer">consumer</a></span>
+         the function to invoke.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "insert"></a>
+    <strong>insert(s, x[, position])</strong>
+    </dt>
+    <dd>
+    Inserts <code>x</code> before the character at the given <code>position</code> in <code>s</code>.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">s</span>
+            <span class="types"><span class="type">string</span></span>
+         the string.
+        </li>
+        <li><span class="parameter">x</span>
+            <span class="types"><span class="type">string</span></span>
+         the string to insert
+        </li>
+        <li><span class="parameter">position</span>
+            <span class="types"><span class="type">integer</span></span>
+         the position to insert the string at; it must
+ be a valid index.
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">string</span></span>
+        the new string; or <code>s</code> if the index is not valid.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "lines"></a>
+    <strong>lines(s[, maxn])</strong>
+    </dt>
+    <dd>
+    Returns an array containing the string <code>s</code> split into lines.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">s</span>
+            <span class="types"><span class="type">string</span></span>
+         the string.
+        </li>
+        <li><span class="parameter">maxn</span>
+            <span class="types"><span class="type">integer</span></span>
+         the maximum number of lines to return.
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">{string}</span></span>
+        an array whose elements contains the lines of <code>s</code>.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "partition"></a>
+    <strong>partition(s, sep[, plain])</strong>
+    </dt>
+    <dd>
+    Searches <code>sep</code> in the string <code>s</code> from the beginning of the string and returns
+ the part before it, the match, and the part after it.  If it is not found,
+ returns two empty strings and <code>s</code>.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">s</span>
+            <span class="types"><span class="type">string</span></span>
+         the string to be searched.
+        </li>
+        <li><span class="parameter">sep</span>
+            <span class="types"><span class="type">string</span></span>
+         the pattern to search
+        </li>
+        <li><span class="parameter">plain</span>
+            <span class="types"><span class="type">boolean</span></span>
+         if <code>true</code> the pattern is considered a plain string.
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">string</span></span>
+        the substring occurring before the specified pattern.</li>
+        <li>
+           <span class="types"><span class="type">string</span></span>
+        the substring matching the specified pattern.</li>
+        <li>
+           <span class="types"><span class="type">string</span></span>
+        the substring occurring after the specified pattern.</li>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "partitionr"></a>
+    <strong>partitionr(s, sep[, plain])</strong>
+    </dt>
+    <dd>
+    Searches <code>sep</code> in the string <code>s</code> from the end of the string and returns
+ the part before it, the match, and the part after it.  If it is not found,
+ returns two empty strings and <code>s</code>.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">s</span>
+            <span class="types"><span class="type">string</span></span>
+         the string.
+        </li>
+        <li><span class="parameter">sep</span>
+            <span class="types"><span class="type">string</span></span>
+         the seperator.
+        </li>
+        <li><span class="parameter">plain</span>
+            <span class="types"><span class="type">boolean</span></span>
+         if <code>true</code> the pattern is considered a plain string.
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">string</span></span>
+        the part before the separator.</li>
+        <li>
+           <span class="types"><span class="type">string</span></span>
+        the separator</li>
+        <li>
+           <span class="types"><span class="type">string</span></span>
+        the part after the separator.</li>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "split"></a>
+    <strong>split(s[, sep='%s+'[, maxn]])</strong>
+    </dt>
+    <dd>
+    Splits a string into substring based on a specified separator.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">s</span>
+            <span class="types"><span class="type">string</span></span>
+         the string to be split.
+        </li>
+        <li><span class="parameter">sep</span>
+            <span class="types"><span class="type">string</span></span>
+         the pattern that delimits the substrings; the pattern must
+ not contain captures.
+         (<em>default</em> '%s+')
+        </li>
+        <li><span class="parameter">maxn</span>
+            <span class="types"><span class="type">integer</span></span>
+         the maximum number of substrings to return.
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">{string}</span></span>
+        an array containing the substrings in the input string that
+ are delimited by one or more separators.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "squeeze"></a>
+    <strong>squeeze(s, p[, plain])</strong>
+    </dt>
+    <dd>
+    Returns the string <code>s</code> with all the runs of the characters in <code>x</code>
+ replaced with a single character.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">s</span>
+            <span class="types"><span class="type">string</span></span>
+         the string.
+        </li>
+        <li><span class="parameter">p</span>
+            <span class="types"><span class="type">string</span></span>
+         the pattern representing the characters to squeeze.
+        </li>
+        <li><span class="parameter">plain</span>
+            <span class="types"><span class="type">boolean</span></span>
+         if <code>true</code> the pattern is considered a plain string.
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">string</span></span>
+        the new string.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "startswith"></a>
+    <strong>startswith(s, p[, plain])</strong>
+    </dt>
+    <dd>
+    Determines whether a string begins with a spcified pattern.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">s</span>
+            <span class="types"><span class="type">string</span></span>
+         the string to be tested.
+        </li>
+        <li><span class="parameter">p</span>
+            <span class="types"><span class="type">string</span></span>
+         the pattern to search for; the pattern must not contain
+ neither captures nor anchors.
+        </li>
+        <li><span class="parameter">plain</span>
+            <span class="types"><span class="type">boolean</span></span>
+         if <code>true</code> the pattern is considered a plain string.
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+        <code>true</code> if the pattern is found at the beginning of the
+ input string.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "translate"></a>
+    <strong>translate(s, from, to)</strong>
+    </dt>
+    <dd>
+    Returns a new string with characters in <code>from</code> replaced with the
+ corresponding characters in <code>to</code>.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">s</span>
+            <span class="types"><span class="type">string</span></span>
+         the string.
+        </li>
+        <li><span class="parameter">from</span>
+            <span class="types"><span class="type">string</span></span>
+         the characters to replace.
+        </li>
+        <li><span class="parameter">to</span>
+            <span class="types"><span class="type">string</span></span>
+         the replacement characters.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">string</span></span>
+        the new string.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "trim"></a>
+    <strong>trim(s[, p=`%s`])</strong>
+    </dt>
+    <dd>
+    Removes all the leading and trailing occurrences of a specified pattern
+ from a string.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">s</span>
+            <span class="types"><span class="type">string</span></span>
+         the string to be trimmed.
+        </li>
+        <li><span class="parameter">p</span>
+            <span class="types"><span class="type">string</span></span>
+         the pattern to remove; the pattern must not contain
+ captures.
+         (<em>default</em> `%s`)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">string</span></span>
+        the string that remains after all the leading and traling
+ occurrences of the specified pattern are removed from the input string.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "triml"></a>
+    <strong>triml(s[, p=`%s`])</strong>
+    </dt>
+    <dd>
+    Removes all the leading occurrences of a specified pattern from a string.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">s</span>
+            <span class="types"><span class="type">string</span></span>
+         the string to be trimmed.
+        </li>
+        <li><span class="parameter">p</span>
+            <span class="types"><span class="type">string</span></span>
+         the pattern to remove; the pattern must not contain
+ captures.
+         (<em>default</em> `%s`)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">string</span></span>
+        the string that remains after all the leading occurrences
+ of the specified pattern are removed from the input string.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "trimr"></a>
+    <strong>trimr(s[, p=`%s`])</strong>
+    </dt>
+    <dd>
+    Removes all the trailing occurrences of a specified pattern from a string.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">s</span>
+            <span class="types"><span class="type">string</span></span>
+         the string to be trimmed.
+        </li>
+        <li><span class="parameter">p</span>
+            <span class="types"><span class="type">string</span></span>
+         the pattern to remove; the pattern must not contain
+ captures.
+         (<em>default</em> `%s`)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">string</span></span>
+        the string that remains after all the traling occurrences
+ of the specified pattern are removed from the input string.
+    </ol>
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+</div> <!-- id="container" -->
+</body>
+</html>
+

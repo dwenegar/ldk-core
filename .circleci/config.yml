@@ -1,0 +1,78 @@
+version: 2.0
+
+workflows:
+   version: 2
+   all:
+      jobs:
+         - build
+         - test:
+            requires:
+               - build
+         - coverage:
+            requires:
+               - build
+         - lint
+
+jobs:
+   build:
+      docker:
+         - image: luadevkit/buildpack-deps:luarocks
+      environment:
+         LUA: lua5.3
+      steps:
+         - checkout
+         - run:
+            name: Build module
+            command: luarocks make
+         - persist_to_workspace:
+              root: /lua
+              paths:
+                 - share/lua/5.3/ldk
+
+   test:
+      docker:
+         - image: luadevkit/buildpack-deps:busted
+      environment:
+         LUA: lua5.3
+      steps:
+         - checkout
+         - attach_workspace:
+            at: /lua
+         - run:
+            name: Run tests
+            command: |
+               mkdir -p /tmp/test-reports/spec
+               busted -o junit -Xoutput /tmp/test-reports/spec/result.xml
+         - store_test_results:
+            path: /tmp/test-reports/spec
+   coverage:
+      docker:
+         - image: luadevkit/buildpack-deps:luacov
+      environment:
+         LUA: lua5.3
+      steps:
+         - checkout
+         - attach_workspace:
+            at: /lua
+         - run:
+            name: Run coverage
+            command: |
+               busted -c
+               luacov-coveralls -v
+   lint:
+      docker:
+         - image: luadevkit/buildpack-deps:luacheck
+      environment:
+         LUA: lua5.3
+      steps:
+         - checkout
+         - attach_workspace:
+            at: /lua
+         - run:
+            name: Run linting
+            command: |
+               mkdir -p /tmp/test-reports/luacheck
+               luacheck --formatter JUnit src/ldk >> /tmp/test-reports/luacheck/ldk-core.xml
+               luacheck --formatter JUnit spec >> /tmp/test-reports/luacheck/spec.xml
+         - store_test_results:
+            path: /tmp/test-reports/luacheck

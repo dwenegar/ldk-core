@@ -1,0 +1,10 @@
+{
+  "files.associations": {
+    ".luacheckrc": "lua",
+    ".luacov": "lua",
+    "*.ld.in": "lua",
+    "*.ld": "lua",
+    "*.rockspec.in": "lua",
+    "*.rockspec": "lua"
+  }
+}
