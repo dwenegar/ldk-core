@@ -1,0 +1,4 @@
+{
+    "name": "ldk-core",
+    "version": "@ROCK_VERSION@"
+  }

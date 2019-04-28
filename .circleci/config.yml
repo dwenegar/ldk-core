@@ -1,0 +1,74 @@
+version: 2.0
+
+workflows:
+   version: 2
+   all:
+      jobs:
+         - build
+         - test:
+            requires:
+               - build
+         - coverage:
+            requires:
+               - build
+         - lint
+
+jobs:
+   build:
+      docker:
+         - image: luadevkit/buildpack-deps:luarocks
+      environment:
+         LUA: lua5.3
+      steps:
+         - checkout
+         - run:
+            name: Build module
+            command: make -f .circleci/Makefile build
+         - persist_to_workspace:
+              root: /lua
+              paths:
+                 - lib/lua/5.3/ldk
+                 - share/lua/5.3/ldk
+
+   test:
+      docker:
+         - image: luadevkit/buildpack-deps:busted
+      environment:
+         LUA: lua5.3
+      steps:
+         - checkout
+         - attach_workspace:
+            at: /lua
+         - run:
+            name: Run tests
+            command: make -f .circleci/Makefile spec
+         - store_test_results:
+            path: /tmp/test-reports/spec
+
+   coverage:
+      docker:
+         - image: luadevkit/buildpack-deps:luacov
+      environment:
+         LUA: lua5.3
+      steps:
+         - checkout
+         - attach_workspace:
+            at: /lua
+         - run:
+            name: Run coverage
+            command: make -f .circleci/Makefile coverage
+
+   lint:
+      docker:
+         - image: luadevkit/buildpack-deps:luacheck
+      environment:
+         LUA: lua5.3
+      steps:
+         - checkout
+         - attach_workspace:
+            at: /lua
+         - run:
+            name: Run linting
+            command: make -f .circleci/Makefile lint
+         - store_test_results:
+            path: /tmp/test-reports/luacheck
