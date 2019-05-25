@@ -3,7 +3,7 @@
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <head>
-    <title>ldk-core 0.1.0</title>
+    <title>ldk-core 0.2.0</title>
     <link rel="stylesheet" href="../ldoc_pale.css" type="text/css" />
 </head>
 <body>
@@ -70,6 +70,10 @@
  parts of a pattern.</td>
   </tr>
   <tr>
+  <td class="name" nowrap><a href="#center">center(s, width[, pad=' '])</a></td>
+  <td class="summary">Centers a string on a specified width.</td>
+  </tr>
+  <tr>
   <td class="name" nowrap><a href="#chars">chars(s[, a])</a></td>
   <td class="summary">Creates an array with the characters of a string.</td>
   </tr>
@@ -80,6 +84,10 @@
   <tr>
   <td class="name" nowrap><a href="#endswith">endswith(s, p[, plain])</a></td>
   <td class="summary">Determines whether a string ends with a spcified pattern.</td>
+  </tr>
+  <tr>
+  <td class="name" nowrap><a href="#expand_tabs">expand_tabs(s[, tabsize=8])</a></td>
+  <td class="summary">Expands the tabs in a given string into spaces.</td>
   </tr>
   <tr>
   <td class="name" nowrap><a href="#findr">findr(s, p, init[, plain=`%s`])</a></td>
@@ -103,6 +111,11 @@
   <td class="summary">Returns an array containing the string <code>s</code> split into lines.</td>
   </tr>
   <tr>
+  <td class="name" nowrap><a href="#ljust">ljust(s, width[, pad=' '])</a></td>
+  <td class="summary">Returns a left-justified string of the specified length by padding a given
+ string with the specified padding characters.</td>
+  </tr>
+  <tr>
   <td class="name" nowrap><a href="#partition">partition(s, sep[, plain])</a></td>
   <td class="summary">Searches <code>sep</code> in the string <code>s</code> from the beginning of the string and returns
  the part before it, the match, and the part after it.</td>
@@ -111,6 +124,11 @@
   <td class="name" nowrap><a href="#partitionr">partitionr(s, sep[, plain])</a></td>
   <td class="summary">Searches <code>sep</code> in the string <code>s</code> from the end of the string and returns
  the part before it, the match, and the part after it.</td>
+  </tr>
+  <tr>
+  <td class="name" nowrap><a href="#rjust">rjust(s, width[, pad])</a></td>
+  <td class="summary">Returns a right-justified string of the specified length by padding a given
+ string with the specified padding characters.</td>
   </tr>
   <tr>
   <td class="name" nowrap><a href="#split">split(s[, sep='%s+'[, maxn]])</a></td>
@@ -142,6 +160,10 @@
   <tr>
   <td class="name" nowrap><a href="#trimr">trimr(s[, p=`%s`])</a></td>
   <td class="summary">Removes all the trailing occurrences of a specified pattern from a string.</td>
+  </tr>
+  <tr>
+  <td class="name" nowrap><a href="#wrap">wrap(s, width)</a></td>
+  <td class="summary">Wraps a given string to the specified width.</td>
   </tr>
 </table>
 
@@ -257,6 +279,46 @@
 
 </dd>
     <dt>
+    <a name = "center"></a>
+    <strong>center(s, width[, pad=' '])</strong>
+    </dt>
+    <dd>
+    Centers a string on a specified width.
+ If the specified width is greater than the input string's length, returns a
+ new string padded with the specified character; otherwise it returns the input string
+ unchanged.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">s</span>
+            <span class="types"><span class="type">string</span></span>
+         the string to be centered.
+        </li>
+        <li><span class="parameter">width</span>
+            <span class="types"><span class="type">integer</span></span>
+         the width of the line to center the line on.
+        </li>
+        <li><span class="parameter">pad</span>
+            <span class="types"><span class="type">string</span></span>
+         the character to use for padding.
+         (<em>default</em> ' ')
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">string</span></span>
+        the input string centered on a line of the specified width.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
     <a name = "chars"></a>
     <strong>chars(s[, a])</strong>
     </dt>
@@ -359,6 +421,39 @@
            <span class="types"><span class="type">boolean</span></span>
         <code>true</code> if the pattern is found at the end of the
  input string.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "expand_tabs"></a>
+    <strong>expand_tabs(s[, tabsize=8])</strong>
+    </dt>
+    <dd>
+    Expands the tabs in a given string into spaces.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">s</span>
+            <span class="types"><span class="type">string</span></span>
+         the string whose tabs will be expaned.
+        </li>
+        <li><span class="parameter">tabsize</span>
+            <span class="types"><span class="type">integer</span></span>
+         the size in spaces of each tab.
+         (<em>default</em> 8)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">string</span></span>
+        the input string with the tabs replaces by the specifed number of spaces.
     </ol>
 
 
@@ -549,6 +644,44 @@
 
 </dd>
     <dt>
+    <a name = "ljust"></a>
+    <strong>ljust(s, width[, pad=' '])</strong>
+    </dt>
+    <dd>
+    Returns a left-justified string of the specified length by padding a given
+ string with the specified padding characters.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">s</span>
+            <span class="types"><span class="type">string</span></span>
+         the string to be left-justified.
+        </li>
+        <li><span class="parameter">width</span>
+            <span class="types"><span class="type">integer</span></span>
+         the width of the line to left-justify the line on.
+        </li>
+        <li><span class="parameter">pad</span>
+            <span class="types"><span class="type">string</span></span>
+         the character to use for padding.
+         (<em>default</em> ' ')
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">string</span></span>
+        the input string left-justified on a line of the specified width.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
     <a name = "partition"></a>
     <strong>partition(s, sep[, plain])</strong>
     </dt>
@@ -632,6 +765,44 @@
         <li>
            <span class="types"><span class="type">string</span></span>
         the part after the separator.</li>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "rjust"></a>
+    <strong>rjust(s, width[, pad])</strong>
+    </dt>
+    <dd>
+    Returns a right-justified string of the specified length by padding a given
+ string with the specified padding characters.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">s</span>
+            <span class="types"><span class="type">string</span></span>
+         the string to be right-justified.
+        </li>
+        <li><span class="parameter">width</span>
+            <span class="types"><span class="type">integer</span></span>
+         the width of the line to right-justify the line on.
+        </li>
+        <li><span class="parameter">pad</span>
+            <span class="types"><span class="type">string</span></span>
+         the character to use for padding.
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">string</span></span>
+        the input string right-justified on a line of the specified width.
     </ol>
 
 
@@ -892,6 +1063,38 @@
            <span class="types"><span class="type">string</span></span>
         the string that remains after all the traling occurrences
  of the specified pattern are removed from the input string.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "wrap"></a>
+    <strong>wrap(s, width)</strong>
+    </dt>
+    <dd>
+    Wraps a given string to the specified width.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">s</span>
+            <span class="types"><span class="type">string</span></span>
+         the string to be wrapped.
+        </li>
+        <li><span class="parameter">width</span>
+            <span class="types"><span class="type">integer</span></span>
+         the width the line is wrapped to.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">string</span></span>
+        the input string wrapped to the specified width.
     </ol>
 
 
