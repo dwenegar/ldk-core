@@ -1,6 +1,5 @@
 --- Extensions to the `string` module.
 -- @module ldk.stringx
-
 local M = {}
 
 local argerror
@@ -25,6 +24,8 @@ local _ENV = M
 local L_SPACE = ('^%s+(.-)$')
 local R_SPACE = ('^(.-)%s+$')
 local LR_SPACE= ('^%s+(.-)%s+$')
+
+local tmpbuf = {}
 
 local caches = setmetatable({}, { __mode = 'k'})
 local function getp(p, f)
@@ -342,7 +343,10 @@ end
 -- @tparam[opt] integer maxn the maximum number of lines to process.
 -- @tparam consumer f the function to invoke.
 function foreachline(s, maxn, f)
-  foreach(s, '\n\r', maxn or MAX_INT, f)
+  if type(maxn) == 'function' then
+    f, maxn = maxn, nil
+  end
+  foreach(s, '\n\r', maxn, f)
 end
 
 --- Splits the string `s` into substring divided by the given separator `sep`
@@ -370,6 +374,134 @@ function foreach(s, sep, maxn, f)
     w, maxn = itr(), maxn - 1
   end
 end
+
+--- Centers a string on a specified width.
+-- If the specified width is greater than the input string's length, returns a
+-- new string padded with the specified character; otherwise it returns the input string
+-- unchanged.
+-- @tparam string s the string to be centered.
+-- @tparam integer width the width of the line to center the line on.
+-- @tparam[opt=' '] string pad the character to use for padding.
+-- @treturn string the input string centered on a line of the specified width.
+function center(s, width, pad)
+  pad = pad or ' '
+  if #s > width then
+    return s
+  end
+  local margin = (width - #s) // 2
+  local r, q = margin % #pad, margin // #pad
+
+  local i = 1
+  tmpbuf[i], i = pad:rep(q), i + 1
+  if r > 0 then
+    tmpbuf[i], i = pad:sub(1, r), i + 1
+  end
+  tmpbuf[i], i = s, i + 1
+
+  margin = width - #s - margin
+  r, q = margin % #pad, margin // #pad
+  tmpbuf[i], i = pad:rep(q), i + 1
+  if r > 0 then
+    tmpbuf[i], i = pad:sub(1, r), i + 1
+  end
+  tmpbuf[i] = nil
+  return table_concat(tmpbuf)
+end
+
+--- Expands the tabs in a given string into spaces.
+-- @tparam string s the string whose tabs will be expaned.
+-- @tparam[opt=8] integer tabsize the size in spaces of each tab.
+-- @treturn string the input string with the tabs replaces by the specifed number of spaces.
+function expand_tabs(text, tabsize)
+  tabsize = tabsize or 8
+  return (text:gsub('\t', (' '):rep(tabsize)))
+end
+
+--- Returns a left-justified string of the specified length by padding a given
+-- string with the specified padding characters.
+-- @tparam string s the string to be left-justified.
+-- @tparam integer width the width of the line to left-justify the line on.
+-- @tparam[opt=' '] string pad the character to use for padding.
+-- @treturn string the input string left-justified on a line of the specified width.
+function ljust(s, width, pad)
+  pad = pad or ' '
+  if #s >= width then
+    return s
+  end
+  local margin = width - #s
+  local r, q = margin % #pad, margin // #pad
+
+  local i = 1
+  tmpbuf[i], i = s, i + 1
+  tmpbuf[i], i = pad:rep(q), i + 1
+  if r > 0 then
+    tmpbuf[i], i = pad:sub(1, r), i + 1
+  end
+  tmpbuf[i] = nil
+  return table_concat(tmpbuf)
+end
+
+--- Returns a right-justified string of the specified length by padding a given
+-- string with the specified padding characters.
+-- @tparam string s the string to be right-justified.
+-- @tparam integer width the width of the line to right-justify the line on.
+-- @tparam[opt] string pad the character to use for padding.
+-- @treturn string the input string right-justified on a line of the specified width.
+function rjust(s, width, pad)
+  pad = pad or ' '
+  if #s >= width then
+    return s
+  end
+  local margin = width - #s
+  local r, q = margin % #pad, margin // #pad
+
+  local i = 1
+  tmpbuf[i], i = pad:rep(q), i + 1
+  if r > 0 then
+    tmpbuf[i], i = pad:sub(1, r), i + 1
+  end
+  tmpbuf[i], i = s, i + 1
+  tmpbuf[i] = nil
+  return table_concat(tmpbuf)
+end
+
+--- Wraps a given string to the specified width.
+-- @tparam string s the string to be wrapped.
+-- @tparam integer width the width the line is wrapped to.
+-- @treturn string the input string wrapped to the specified width.
+function wrap(s, width)
+  if #s < width then
+    return s
+  end
+  local i, len, spc = 1, 0, nil
+  local function append(x, is_space)
+    if i > 1 and len > 0 and len + #x > width then
+      tmpbuf[i], i = '\n', i + 1
+      len = 0
+      if is_space then return end
+    end
+    if is_space then
+      spc = x
+    else
+      if spc and len > 0 then
+        tmpbuf[i], i = spc, i + 1
+        spc = nil
+      end
+      tmpbuf[i], i = x, i + 1
+    end
+    len = len + #x
+  end
+
+  local le = 1
+  for b, w, e in s:gmatch('()(%S+)()') do
+    if b > le then
+      append(s:sub(le, b - 1), true)
+    end
+    append(w)
+    le = e
+  end
+  tmpbuf[i] = nil
+  return table_concat(tmpbuf)end
 
 --- signature of a @{foreach} or @{foreachline} callback function
 -- @ftype consumer
