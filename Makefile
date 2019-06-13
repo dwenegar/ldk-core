@@ -8,13 +8,6 @@ rock_name = ldk-core
 rock_version := $(shell $(mkver))
 rockspec = rockspecs/$(rock_name)-$(rock_version)-1.rockspec
 
-sources = \
-	src/ldk/array.lua \
-	src/ldk/debugx.lua \
-	src/ldk/func.lua \
-	src/ldk/stringx.lua \
-	src/ldk/tablex.lua
-
 makefile_path = $(abspath $(lastword $(MAKEFILE_LIST)))
 cwd = $(patsubst %/,%,$(dir $(makefile_path)))
 cwd_unix := $(shell $(mkpath) $(cwd))
@@ -52,7 +45,7 @@ build: rockspec
 build-dev: rockspec-dev
 	luarocks make
 
- circleci-build:
+circleci-build:
 	$(circleci) circleci build --job build
 
 circleci-shell:
