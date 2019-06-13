@@ -245,7 +245,7 @@ end
 -- @usage
 -- print(S("Hello, $name", { name = 'James' })))
 function S(s, values)
-  return (s:gsub('%$(%S+)', function(w)
+  return (s:gsub('%$([^%$%s]+)', function(w)
     return tostring(values[tonumber(w) or w])
   end))
 end
@@ -259,7 +259,7 @@ end
 -- @usage
 -- print(F("$height%2.2f", { height = 1.9 }))
 function F(s, values)
-  return (s:gsub('%$(%S+)(%%%S+)', function(w, fmt)
+  return (s:gsub('%$([^%$%s]+)(%%%S+)', function(w, fmt)
     return fmt:format(values[tonumber(w) or w])
   end))
 end
