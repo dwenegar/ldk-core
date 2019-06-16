@@ -2,6 +2,8 @@
 -- @module ldk.stringx
 local M = {}
 
+local native = require 'ldk.stringx.native'
+
 local argerror
 do local _ = require 'ldk._base'
   argerror = _.argerror
@@ -504,7 +506,34 @@ function wrap(s, width)
     le = e
   end
   tmpbuf[i] = nil
-  return table_concat(tmpbuf)end
+  return table_concat(tmpbuf)
+end
+
+--- Replaces a format specifiers in a given string with the string representation of a
+-- corresponding value; the function behaves like Lua's `string.format` but
+-- also support positional specifiers: `%n$...`.
+-- @tparam string s a format string.
+-- @param ... the values to be formatted.
+-- @treturn string a copy of `s` in which the format items have been replaced
+-- by the string representation of the corresponding value.
+-- @raise if positional and non positional format specifiers are used together.
+function format(s, ...)
+  local args = table_pack(...)
+  local ss, i, p = s, 0, nil
+  local b = {}
+  repeat
+    local h, n, fmt, t = ss:match('^(.-)%%(%d*)%$?([^%%]+)(.*)$')
+    if #n > 0 then
+      p, i = true, p == false and argerror(1, 'format', "invalid format") or tonumber(n)
+    else
+      p, i = false, p == true and argerror(1, 'format', "invalid format") or i + 1
+    end
+    b[#b + 1] = #h > 0 and h or nil
+    b[#b + 1] = ('%' .. fmt):format(args[i])
+    ss = t
+  until #ss == 0
+  return table_concat(b)
+end
 
 --- signature of a @{foreach} or @{foreachline} callback function
 -- @ftype consumer
