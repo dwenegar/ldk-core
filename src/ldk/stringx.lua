@@ -18,6 +18,8 @@ local setmetatable = setmetatable
 local MAX_INT = math.maxinteger
 
 local table_concat = table.concat
+local table_pack= table.pack
+local table_unpack= table.unpack
 
 local _ENV = M
 
@@ -61,17 +63,18 @@ end
 -- @tparam[opt=`%s`] boolean plain if `true` the pattern is considered a plain string.
 -- @treturn integer the index where the pattern starts.
 -- @treturn integer the index where the pattern ends.
+-- @return ... the captures of the pattern, if it contained any.
 function findr(s, p, init, plain)
-  local f1, e1 = s:find(p, init, plain)
-  if not f1 then
+  local r1 = table_pack(s:find(p, init, plain))
+  if #r1 == 0 then
     return nil
   end
   while true do
-    local f2, e2 = s:find(p, e1 + 1, plain)
-    if not f2 then
-      return f1, e1
+    local r2 = table_pack(s:find(p, r1[2] + 1, plain))
+    if #r2 == 0 then
+      return table_unpack(r1)
     end
-    f1, e1 = f2, e2
+    r1 = r2
   end
 end
 
