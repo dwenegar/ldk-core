@@ -419,9 +419,9 @@ end
 -- @tparam string s the string whose tabs will be expaned.
 -- @tparam[opt=8] integer tabsize the size in spaces of each tab.
 -- @treturn string the input string with the tabs replaces by the specifed number of spaces.
-function expand_tabs(text, tabsize)
+function expand_tabs(s, tabsize)
   tabsize = tabsize or 8
-  return (text:gsub('\t', (' '):rep(tabsize)))
+  return (s:gsub('\t', (' '):rep(tabsize)))
 end
 
 --- Returns a left-justified string of the specified length by padding a given
