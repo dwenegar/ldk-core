@@ -2,20 +2,15 @@
 -- @module ldk.stringx
 local M = {}
 
-local native = require 'ldk.stringx.native'
+local _ = require 'ldk._base'
+local argerror = _.argerror
 
-local argerror
-do local _ = require 'ldk._base'
-  argerror = _.argerror
-  _.merge(M, string)
-  _ = nil
-end
-
+local getmetatable = getmetatable
 local ipairs = ipairs
+local setmetatable = setmetatable
 local tonumber = tonumber
 local tostring = tostring
 local type = type
-local setmetatable = setmetatable
 
 local MAX_INT = math.maxinteger
 
@@ -44,6 +39,13 @@ local function getp(p, f)
     cache[p] = r
   end
   return r
+end
+
+--- Injects the function of the module into Lua's `string` table.
+function inject()
+  _.merge(getmetatable('').__index, M, function(name)
+    return name ~= 'inject'
+  end)
 end
 
 --- Creates an array with the characters of a string.

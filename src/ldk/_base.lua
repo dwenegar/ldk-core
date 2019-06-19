@@ -6,9 +6,11 @@ local type = type
 
 local _ENV = M
 
-function merge(t1, t2)
+function merge(t1, t2, p)
   for k, v in pairs(t2) do
-    t1[k] = v
+    if p == nil or p(k, v) then
+      t1[k] = v
+    end
   end
   return t1
 end
@@ -25,6 +27,5 @@ function argerror(i, name, msg, level)
   end
   error(msg, level + 2)
 end
-
 
 return M
