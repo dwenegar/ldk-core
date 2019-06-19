@@ -101,20 +101,18 @@ local function new_version(...)
   local version
   if args[1] then
     version = parse_tag(args[1])
-    if not version then
-      fail("invalid version format: %s", args[1])
-    end
-  else
-    version = read_versionrc()
-    if not version then
-      version = { major = 0, minor = 1, patch = 0 }
-    end
-    local what = args[1] or 'patch'
-    if not version[what] then
-      fail("invalid argument '%s'", what)
-    end
-    inc_version(version, what)
   end
+  if not version then
+    version = read_versionrc()
+  end
+  if not version then
+    version = { major = 0, minor = 1, patch = 0 }
+  end
+  local what = args[1] or 'patch'
+  if not version[what] then
+    fail("invalid argument '%s'", what)
+  end
+  inc_version(version, what)
 
   write_versionrc(version)
   if opts['create-branch'] then
