@@ -1,6 +1,6 @@
 project = 'ldk-core'
-version = '0.2.1'
-title = 'ldk-core 0.2.1'
+version = '0.3.0'
+title = 'ldk-core 0.3.0'
 description = 'Core libraries for LDK'
 dir = '../docs'
 file = {

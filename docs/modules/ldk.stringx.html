@@ -3,7 +3,7 @@
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <head>
-    <title>ldk-core 0.2.1</title>
+    <title>ldk-core 0.3.0</title>
     <link rel="stylesheet" href="../ldoc_pale.css" type="text/css" />
 </head>
 <body>
@@ -101,6 +101,16 @@
   <tr>
   <td class="name" nowrap><a href="#foreachline">foreachline(s[, maxn], f)</a></td>
   <td class="summary">Splits the string <code>s</code> into lines and invoke <code>f</code> with each of them.</td>
+  </tr>
+  <tr>
+  <td class="name" nowrap><a href="#format">format(s, ...)</a></td>
+  <td class="summary">Replaces a format specifiers in a given string with the string representation of a
+ corresponding value; the function behaves like Lua's <code>string.format</code> but
+ also support positional specifiers: <code>%n$...</code>.</td>
+  </tr>
+  <tr>
+  <td class="name" nowrap><a href="#inject">inject()</a></td>
+  <td class="summary">Injects the function of the module into Lua's <code>string</code> table.</td>
   </tr>
   <tr>
   <td class="name" nowrap><a href="#insert">insert(s, x[, position])</a></td>
@@ -498,6 +508,8 @@
         <li>
            <span class="types"><span class="type">integer</span></span>
         the index where the pattern ends.</li>
+        <li>
+        ... the captures of the pattern, if it contained any.</li>
     </ol>
 
 
@@ -566,6 +578,57 @@
          the function to invoke.
         </li>
     </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "format"></a>
+    <strong>format(s, ...)</strong>
+    </dt>
+    <dd>
+    Replaces a format specifiers in a given string with the string representation of a
+ corresponding value; the function behaves like Lua's <code>string.format</code> but
+ also support positional specifiers: <code>%n$...</code>.
+
+    </ul>
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">s</span>
+            <span class="types"><span class="type">string</span></span>
+         a format string.
+        </li>
+        <li><span class="parameter">...</span>
+         the values to be formatted.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">string</span></span>
+        a copy of <code>s</code> in which the format items have been replaced
+ by the string representation of the corresponding value.
+    </ol>
+
+    <h3>Raises:</h3>
+    if positional and non positional format specifiers are used together.
+
+
+
+</dd>
+    <dt>
+    <a name = "inject"></a>
+    <strong>inject()</strong>
+    </dt>
+    <dd>
+    Injects the function of the module into Lua's <code>string</code> table.
+
+    </ul>
+
 
 
 
