@@ -1,0 +1,31 @@
+name: "spec"
+
+on:
+   push:
+      branches: [master]
+   pull_request:
+      branches: [master]
+
+jobs:
+   test:
+      strategy:
+         fail-fast: false
+
+      runs-on: ubuntu-latest
+
+      steps:
+         - uses: actions/checkout@master
+
+         - uses: leafo/gh-actions-lua@master
+           with:
+              luaVersion: "5.3"
+
+         - uses: leafo/gh-actions-luarocks@v2
+
+         - name: build
+           run: |
+              luarocks install busted
+              luarocks make
+         - name: test
+           run: |
+              busted -o utfTerminal
