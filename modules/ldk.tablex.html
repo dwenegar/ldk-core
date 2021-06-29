@@ -1,0 +1,1050 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+<title>Reference</title>
+<link rel="stylesheet" href="../ldoc_pale.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+<div id="main">
+
+
+<div id="navigation">
+<br/>
+<h1>ldk-core</h1>
+<ul>
+<li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+<li><a href="#Function_Types">Function Types </a></li>
+</ul>
+
+<h2>Modules</h2>
+<ul class="nowrap">
+<li><a href="../modules/ldk.array.html">ldk.array</a></li>
+<li><a href="../modules/ldk.debugx.html">ldk.debugx</a></li>
+<li><a href="../modules/ldk.func.html">ldk.func</a></li>
+<li><a href="../modules/ldk.predicates.html">ldk.predicates</a></li>
+<li><a href="../modules/ldk.stringx.html">ldk.stringx</a></li>
+<li><strong>ldk.tablex</strong></li>
+</ul>
+</div>
+
+<div id="content">
+
+<h1>Module <code>ldk.tablex</code></h1>
+
+Extensions to the <code>table</code> module.
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+<tr>
+<td class="name" nowrap><a href="#aggregate">aggregate(t[, acc], f)</a></td>
+<td class="summary">Applies an accumulator function over a table.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#all">all(t, p)</a></td>
+<td class="summary">Determines whether all the key-value pairs of a table satisfy a condition.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#any">any(t, p)</a></td>
+<td class="summary">Determines whether any key-value pair of a table satisfy a condition.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#avg">avg(t[, f])</a></td>
+<td class="summary">Calculates the average of the values obtained by applying a transform function to each key-value pair of a table.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#clear">clear(t)</a></td>
+<td class="summary">Removes all key-value pairs from a table.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#clone">clone(t)</a></td>
+<td class="summary">Clones the given table.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#contains_key">contains_key(t, k[, eq])</a></td>
+<td class="summary">Determines whether a table contains a specified key by using the given equality comparer.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#contains_value">contains_value(t, v[, eq])</a></td>
+<td class="summary">Determines whether a table contains a specified value by using the given equality comparer.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#copy">copy(src, dst[, keys])</a></td>
+<td class="summary">Copies the key-value pairs from a table to another table.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#count">count(t, p)</a></td>
+<td class="summary">Counts how many key-value pairs of a table satisfy a condition.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#each_pair">each_pair(t, f)</a></td>
+<td class="summary">Invokes a function on each key-value pair of a table.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#eq">eq(t1, t2, eq)</a></td>
+<td class="summary">Compares two tables for equality.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#fill">fill(t, v)</a></td>
+<td class="summary">Fills a table with the specified value.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#filter">filter(t, p)</a></td>
+<td class="summary">Filters a table based on a predicate.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#group_by">group_by(t, f)</a></td>
+<td class="summary">Groups the key-value pairs of a table according to a specified key selector.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#is_empty">is_empty(t)</a></td>
+<td class="summary">Determines whether a table is empty or not.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#keys">keys(t[, sorted][, cmp])</a></td>
+<td class="summary">Creates a table with the keys of a table.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#map">map(t, f)</a></td>
+<td class="summary">Projects each key-value pair of a table into a new value.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#max">max(t, f)</a></td>
+<td class="summary">Applies a transform function to each value of a table and return the the maximum of the projected values.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#max_by">max_by(t, f)</a></td>
+<td class="summary">Applies a transform function to each value of a table and returns the maximum according to the projected values.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#merge">merge(t1, t2, ...[, f])</a></td>
+<td class="summary">Merges the given tables into a new one.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#min">min(t[, f])</a></td>
+<td class="summary">Applies a transform function to each value of a table and return the the minimum of the projected values.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#min_by">min_by(t, f)</a></td>
+<td class="summary">Applies a transform function to each value of a table and returns the minimum according to the projected values.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#remove_all_if">remove_all_if(t, p)</a></td>
+<td class="summary">Searches a table for all the key-value pairs satisfying a specified condition, and remove them.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#remove_keys">remove_keys(t, keys)</a></td>
+<td class="summary">Removes the specified keys from a table.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#sum">sum(t[, f])</a></td>
+<td class="summary">Calculates the sum of the table of numbers that are obtained by applying a transform function to each key-value pair of a table.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#to_string">to_string(t)</a></td>
+<td class="summary">Returns the string representation of a table.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#values">values(t)</a></td>
+<td class="summary">Creates an iterator over the values of a table.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#with">with(n, f)</a></td>
+<td class="summary">Creates a table by generating a specified number of key-value pairs using the given generator.</td>
+</tr>
+</table>
+<h2><a href="#Function_Types">Function Types </a></h2>
+<table class="function_list">
+<tr>
+<td class="name" nowrap><a href="#key_selector">key_selector(k, v)</a></td>
+<td class="summary">Signature of a key selector function.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#predicate">predicate(k, v)</a></td>
+<td class="summary">Signature of a predicate function.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#transform">transform(k, v)</a></td>
+<td class="summary">Signature of a transform function.</td>
+</tr>
+</table>
+<!--<br/>
+<br/> -->
+
+<h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+<dl class="function">
+<dt>
+<a name = "aggregate"></a>
+<strong>aggregate(t[, acc], f)</strong>
+</dt>
+<dd>
+<p>Applies an accumulator function over a table.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">t</span>
+<span class="types"><span class="type">table</span></span>
+the table to aggregate over.
+</li>
+<li><span class="parameter">acc</span>
+the initial value of the accumulator.
+(<em>optional</em>)
+</li>
+<li><span class="parameter">f</span>
+<span class="types"><span class="type">accumulator</span></span>
+the accumulator function to be applied to each key-value pair.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+the final accumulator value.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "all"></a>
+<strong>all(t, p)</strong>
+</dt>
+<dd>
+<p>Determines whether all the key-value pairs of a table satisfy a condition.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">t</span>
+<span class="types"><span class="type">table</span></span>
+a table containing the key-value pairs to apply the predicate to.
+</li>
+<li><span class="parameter">p</span>
+<span class="types"><a class="type" href="../modules/ldk.tablex.html#predicate">predicate</a></span>
+a function to test each key-value pair for a condition.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">boolean</span></span>
+<code>true</code> if every key-value pair of the table satisfies the specified predicate, or if the table is empty; otherwise <code>false</code>.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "any"></a>
+<strong>any(t, p)</strong>
+</dt>
+<dd>
+<p>Determines whether any key-value pair of a table satisfy a condition.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">t</span>
+<span class="types"><span class="type">table</span></span>
+a table containing the key-value pairs to apply the predicate to.
+</li>
+<li><span class="parameter">p</span>
+<span class="types"><a class="type" href="../modules/ldk.tablex.html#predicate">predicate</a></span>
+a function to test each key-value pair for a condition.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">boolean</span></span>
+<code>true</code> if any key-value pair of the table satisfies the specified predicate, or if the table is empty; otherwise <code>false</code>.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "avg"></a>
+<strong>avg(t[, f])</strong>
+</dt>
+<dd>
+<p>Calculates the average of the values obtained by applying a transform function to each key-value pair of a table.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">t</span>
+<span class="types"><span class="type">table</span></span>
+a table to calculate the average of.
+</li>
+<li><span class="parameter">f</span>
+<span class="types"><a class="type" href="../modules/ldk.tablex.html#transform">transform</a></span>
+a transform function to apply to each element.
+(<em>optional</em>)
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">number</span></span>
+the average of the projected values; <code>nil</code> if the table is empty.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "clear"></a>
+<strong>clear(t)</strong>
+</dt>
+<dd>
+<p>Removes all key-value pairs from a table.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">t</span>
+<span class="types"><span class="type">table</span></span>
+the table to wipe.
+</li>
+</ul>
+
+
+
+</dd>
+<dt>
+<a name = "clone"></a>
+<strong>clone(t)</strong>
+</dt>
+<dd>
+<p>Clones the given table.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">t</span>
+<span class="types"><span class="type">table</span></span>
+the table to clone.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">table</span></span>
+a clone of the given table.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "contains_key"></a>
+<strong>contains_key(t, k[, eq])</strong>
+</dt>
+<dd>
+<p>Determines whether a table contains a specified key by using the given equality comparer.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">t</span>
+<span class="types"><span class="type">table</span></span>
+the table in which to locate the value.
+</li>
+<li><span class="parameter">k</span>
+the key to locate in the table.
+</li>
+<li><span class="parameter">eq</span>
+<span class="types"><span class="type">function</span></span>
+the function to be used to test the key for equality.
+(<em>optional</em>)
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">boolean</span></span>
+<code>true</code> if the table contains the specified key; otherwise <code>false</code>.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "contains_value"></a>
+<strong>contains_value(t, v[, eq])</strong>
+</dt>
+<dd>
+<p>Determines whether a table contains a specified value by using the given equality comparer.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">t</span>
+<span class="types"><span class="type">table</span></span>
+the table in which to locate the value.
+</li>
+<li><span class="parameter">v</span>
+the value to locate in the table.
+</li>
+<li><span class="parameter">eq</span>
+<span class="types"><span class="type">function</span></span>
+the function to be used to test the value for equality.
+(<em>optional</em>)
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">boolean</span></span>
+<code>true</code> if the table contains the specified value; otherwise <code>false</code>.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "copy"></a>
+<strong>copy(src, dst[, keys])</strong>
+</dt>
+<dd>
+<p>Copies the key-value pairs from a table to another table.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">src</span>
+<span class="types"><span class="type">table</span></span>
+the table to copy from.
+</li>
+<li><span class="parameter">dst</span>
+<span class="types"><span class="type">table</span></span>
+the table to copy to.
+</li>
+<li><span class="parameter">keys</span>
+<span class="types"><span class="type">table</span></span>
+a list of keys to copy; if <code>nil</code> all the keys will be copied.
+(<em>optional</em>)
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">table</span></span>
+the <em>dst</em> table.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "count"></a>
+<strong>count(t, p)</strong>
+</dt>
+<dd>
+<p>Counts how many key-value pairs of a table satisfy a condition.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">t</span>
+<span class="types"><span class="type">table</span></span>
+a table containing the key-value pairs to be tested and counted.
+</li>
+<li><span class="parameter">p</span>
+<span class="types"><a class="type" href="../modules/ldk.tablex.html#predicate">predicate</a></span>
+a function to test each key-value pair.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">integer</span></span>
+the number of key-value pairs satisfying the specified predicate.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "each_pair"></a>
+<strong>each_pair(t, f)</strong>
+</dt>
+<dd>
+<p>Invokes a function on each key-value pair of a table.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">t</span>
+<span class="types"><span class="type">table</span></span>
+the table to invoke the function on.
+</li>
+<li><span class="parameter">f</span>
+<span class="types"><span class="type">function</span></span>
+a function to apply to invoke on each key-value pair.
+</li>
+</ul>
+
+
+
+</dd>
+<dt>
+<a name = "eq"></a>
+<strong>eq(t1, t2, eq)</strong>
+</dt>
+<dd>
+<p>Compares two tables for equality.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">t1</span>
+<span class="types"><span class="type">table</span></span>
+the first table to compare.
+</li>
+<li><span class="parameter">t2</span>
+<span class="types"><span class="type">table</span></span>
+the second table to compare.
+</li>
+<li><span class="parameter">eq</span>
+<span class="types"><span class="type">function[opt]</span></span>
+the function used to test the table's values for equality.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">bool</span></span>
+<code>true</code> if the tables are equals, otherwise <code>false</code>.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "fill"></a>
+<strong>fill(t, v)</strong>
+</dt>
+<dd>
+<p>Fills a table with the specified value.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">t</span>
+<span class="types"><span class="type">table</span></span>
+a table to fill.
+</li>
+<li><span class="parameter">v</span>
+the value to use to fill the table.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">table</span></span>
+the input table.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "filter"></a>
+<strong>filter(t, p)</strong>
+</dt>
+<dd>
+<p>Filters a table based on a predicate.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">t</span>
+<span class="types"><span class="type">table</span></span>
+the table containing the key-value pairs to be tested.
+</li>
+<li><span class="parameter">p</span>
+<span class="types"><a class="type" href="../modules/ldk.tablex.html#predicate">predicate</a></span>
+the function used to test each key-value pair.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">table</span></span>
+a table containing key-value pairs satisfying the condition.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "group_by"></a>
+<strong>group_by(t, f)</strong>
+</dt>
+<dd>
+<p>Groups the key-value pairs of a table according to a specified key selector.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">t</span>
+<span class="types"><span class="type">table</span></span>
+a table whose key-value pairs to group.
+</li>
+<li><span class="parameter">f</span>
+<span class="types"><span class="type">key_selector</span></span>
+a function to extract the key for each key-value pair.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">table</span></span>
+a collection of key-value pairs where each key-value pair represents a a projection over a group and its key.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "is_empty"></a>
+<strong>is_empty(t)</strong>
+</dt>
+<dd>
+<p>Determines whether a table is empty or not.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">t</span>
+<span class="types"><span class="type">table</span></span>
+a table containing the key-value pairs to be tested.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">boolean</span></span>
+<code>true</code> if the table is empty, otherwise <code>false</code>.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "keys"></a>
+<strong>keys(t[, sorted][, cmp])</strong>
+</dt>
+<dd>
+<p>Creates a table with the keys of a table.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">t</span>
+<span class="types"><span class="type">table</span></span>
+the table tho return the keys of.
+</li>
+<li><span class="parameter">sorted</span>
+<span class="types"><span class="type">boolean</span></span>
+if <code>true</code> the keys will be sorted.
+(<em>optional</em>)
+</li>
+<li><span class="parameter">cmp</span>
+<span class="types"><span class="type">comparator</span></span>
+a function used to compare each key.
+(<em>optional</em>)
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">table</span></span>
+a table with the keys of the input table.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "map"></a>
+<strong>map(t, f)</strong>
+</dt>
+<dd>
+<p>Projects each key-value pair of a table into a new value.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">t</span>
+<span class="types"><span class="type">table</span></span>
+a table to invoke the transforms function on.
+</li>
+<li><span class="parameter">f</span>
+<span class="types"><a class="type" href="../modules/ldk.tablex.html#transform">transform</a></span>
+a transform function to apply to each key-value pair; the second parameter is the index of the key-value pair.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">table</span></span>
+a table whose key-value pairs are the the result of applying the specified transform function on the key-value pairs of the input table.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "max"></a>
+<strong>max(t, f)</strong>
+</dt>
+<dd>
+<p>Applies a transform function to each value of a table and return the the maximum of the projected values.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">t</span>
+<span class="types"><span class="type">table</span></span>
+an table to determine the maximum value of.
+</li>
+<li><span class="parameter">f</span>
+<span class="types"><a class="type" href="../modules/ldk.tablex.html#transform">transform</a></span>
+a transform function to apply to each value.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+<li>
+the key of maximum projected value in the table, or <code>nil</code> if the table is empty.</li>
+<li>
+the maximum projected value in the table, or <code>nil</code> if the table is empty.</li>
+</ol>
+
+
+</dd>
+<dt>
+<a name = "max_by"></a>
+<strong>max_by(t, f)</strong>
+</dt>
+<dd>
+<p>Applies a transform function to each value of a table and returns the maximum according to the projected values.  or <code>nil</code> if the table is empty.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">t</span>
+<span class="types"><span class="type">table</span></span>
+a table to determine the maximum value of.
+</li>
+<li><span class="parameter">f</span>
+<span class="types"><a class="type" href="../modules/ldk.tablex.html#transform">transform</a></span>
+a transform function to apply to each value.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+<li>
+the key of maximum value in the table according to the transform function or <code>nil</code> if the table is empty.</li>
+<li>
+the maximum value in the table according to the transform function,</li>
+</ol>
+
+
+</dd>
+<dt>
+<a name = "merge"></a>
+<strong>merge(t1, t2, ...[, f])</strong>
+</dt>
+<dd>
+<p>Merges the given tables into a new one.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">t1</span>
+<span class="types"><span class="type">table</span></span>
+the first table to merge.
+</li>
+<li><span class="parameter">t2</span>
+<span class="types"><span class="type">table</span></span>
+the second table to merge.
+</li>
+<li><span class="parameter">...</span>
+more tables.
+</li>
+<li><span class="parameter">f</span>
+<span class="types"><span class="type">function</span></span>
+a function invoked on each duplicated key; the first arguments is the ket, the second is the old value, and the third is the new value.
+(<em>optional</em>)
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">table</span></span>
+a new table containing the key-value pairs of the input tables.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "min"></a>
+<strong>min(t[, f])</strong>
+</dt>
+<dd>
+<p>Applies a transform function to each value of a table and return the the minimum of the projected values.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">t</span>
+<span class="types"><span class="type">table</span></span>
+a table to determine the minimum value of.
+</li>
+<li><span class="parameter">f</span>
+<span class="types"><a class="type" href="../modules/ldk.tablex.html#transform">transform</a></span>
+a transform function to apply to each value.
+(<em>optional</em>)
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+the minimum projected value in the table, or <code>nil</code> if the table is empty.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "min_by"></a>
+<strong>min_by(t, f)</strong>
+</dt>
+<dd>
+<p>Applies a transform function to each value of a table and returns the minimum according to the projected values.  or <code>nil</code> if the table is empty.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">t</span>
+<span class="types"><span class="type">table</span></span>
+a table to determine the minimum value of.
+</li>
+<li><span class="parameter">f</span>
+<span class="types"><a class="type" href="../modules/ldk.tablex.html#transform">transform</a></span>
+a transform function to apply to each value.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+the minimum value in the table according to the transform function,
+</ol>
+
+
+</dd>
+<dt>
+<a name = "remove_all_if"></a>
+<strong>remove_all_if(t, p)</strong>
+</dt>
+<dd>
+<p>Searches a table for all the key-value pairs satisfying a specified condition, and remove them.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">t</span>
+<span class="types"><span class="type">table</span></span>
+a table to be searched.
+</li>
+<li><span class="parameter">p</span>
+<span class="types"><a class="type" href="../modules/ldk.tablex.html#predicate">predicate</a></span>
+a function to test each key-value pair.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">integer</span></span>
+the number of key-value pairs removed.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "remove_keys"></a>
+<strong>remove_keys(t, keys)</strong>
+</dt>
+<dd>
+<p>Removes the specified keys from a table.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">t</span>
+<span class="types"><span class="type">table</span></span>
+the table to remove the keys from.
+</li>
+<li><span class="parameter">keys</span>
+<span class="types"><span class="type">table</span></span>
+the list of keys to remove.
+</li>
+</ul>
+
+
+
+</dd>
+<dt>
+<a name = "sum"></a>
+<strong>sum(t[, f])</strong>
+</dt>
+<dd>
+<p>Calculates the sum of the table of numbers that are obtained by applying a transform function to each key-value pair of a table.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">t</span>
+<span class="types"><span class="type">table</span></span>
+a table to calculate the average of.
+</li>
+<li><span class="parameter">f</span>
+<span class="types"><a class="type" href="../modules/ldk.tablex.html#transform">transform</a></span>
+a transform function to apply to each key-value pair.
+(<em>optional</em>)
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">number</span></span>
+the sum of the projected key-value pairs.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "to_string"></a>
+<strong>to_string(t)</strong>
+</dt>
+<dd>
+<p>Returns the string representation of a table.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">t</span>
+<span class="types"><span class="type">table</span></span>
+the table to return the string representation of.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">string</span></span>
+a string representing the given table.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "values"></a>
+<strong>values(t)</strong>
+</dt>
+<dd>
+<p>Creates an iterator over the values of a table.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">t</span>
+<span class="types"><span class="type">table</span></span>
+the table tho return an iterator of.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">function</span></span>
+an iterator over the values of the input table.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "with"></a>
+<strong>with(n, f)</strong>
+</dt>
+<dd>
+<p>Creates a table by generating a specified number of key-value pairs using the given generator.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">n</span>
+<span class="types"><span class="type">integer</span></span>
+the number of key-value pairs to generate.
+</li>
+<li><span class="parameter">f</span>
+<span class="types"><span class="type">function</span></span>
+a generator function used to generate the key-value pairs of the table; the argument of the function is the index of the key-value pair being generated.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">table</span></span>
+an table with the specified number of key-value pairs.
+</ol>
+
+
+</dd>
+</dl>
+<h2 class="section-header "><a name="Function_Types"></a>Function Types </h2>
+
+<dl class="function">
+<dt>
+<a name = "key_selector"></a>
+<strong>key_selector(k, v)</strong>
+</dt>
+<dd>
+<p>Signature of a key selector function.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">k</span>
+the key-value pair's key.
+</li>
+<li><span class="parameter">v</span>
+the key-value pair's value.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+any value that can be used as a table key.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "predicate"></a>
+<strong>predicate(k, v)</strong>
+</dt>
+<dd>
+<p>Signature of a predicate function.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">k</span>
+the key-value pair's key.
+</li>
+<li><span class="parameter">v</span>
+the key-value pair's value.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">boolean</span></span>
+<code>true</code> if the key-value pair matches the condition, otherwise <code>false</code>.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "transform"></a>
+<strong>transform(k, v)</strong>
+</dt>
+<dd>
+<p>Signature of a transform function.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">k</span>
+the key-value pair's key.
+</li>
+<li><span class="parameter">v</span>
+the key-value pair's value.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+<li>
+the transformed key, or <code>nil</code> the key-value pair must be skipped.</li>
+<li>
+the transformed value, or <code>nil</code> the key-value pair must be skipped.</li>
+</ol>
+
+
+</dd>
+</dl>
+
+
+</div><!-- id="content" -->
+</div><!-- id="main" -->
+</div><!-- id="container" -->
+</body>
+</html>

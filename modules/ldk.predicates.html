@@ -1,0 +1,475 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+<title>Reference</title>
+<link rel="stylesheet" href="../ldoc_pale.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+<div id="main">
+
+
+<div id="navigation">
+<br/>
+<h1>ldk-core</h1>
+<ul>
+<li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+<h2>Modules</h2>
+<ul class="nowrap">
+<li><a href="../modules/ldk.array.html">ldk.array</a></li>
+<li><a href="../modules/ldk.debugx.html">ldk.debugx</a></li>
+<li><a href="../modules/ldk.func.html">ldk.func</a></li>
+<li><strong>ldk.predicates</strong></li>
+<li><a href="../modules/ldk.stringx.html">ldk.stringx</a></li>
+<li><a href="../modules/ldk.tablex.html">ldk.tablex</a></li>
+</ul>
+</div>
+
+<div id="content">
+
+<h1>Module <code>ldk.predicates</code></h1>
+
+Ready to use predicates and predicate factories for several test cases.
+<p> A predicate is a function that evaluate a condition and return either <code>true</code> or <code>false</code>.</p>
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+<tr>
+<td class="name" nowrap><a href="#always">always(x)</a></td>
+<td class="summary">Returns a function always returning the specified value.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#eq">eq(x)</a></td>
+<td class="summary">Returns a function implementing the <em>equal to</em> predicate for the given argument.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#ge">ge(x)</a></td>
+<td class="summary">Returns a function implementing the <em>greater than or equal to</em> predicate for the given argument.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#gt">gt(x)</a></td>
+<td class="summary">Returns a function implementing the <em>greater than</em> predicate for the given argument.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#is_boolean">is_boolean(x)</a></td>
+<td class="summary">Returns <code>true</code> if the given argument is a boolean.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#is_function">is_function(x)</a></td>
+<td class="summary">Returns <code>true</code> if the given argument is a function.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#is_integer">is_integer(x)</a></td>
+<td class="summary">Returns <code>true</code> if the given argument is an integer.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#is_nil">is_nil(x)</a></td>
+<td class="summary">Returns <code>true</code> if the given argument is <code>nil</code>.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#is_number">is_number(x)</a></td>
+<td class="summary">Returns <code>true</code> if the given argument is a number.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#is_string">is_string(x)</a></td>
+<td class="summary">Returns <code>true</code> if the given argument is a string.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#is_table">is_table(x)</a></td>
+<td class="summary">Returns <code>true</code> if the given argument is a table.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#is_thread">is_thread(x)</a></td>
+<td class="summary">Returns <code>true</code> if the given argument is a coroutine.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#is_userdata">is_userdata(x)</a></td>
+<td class="summary">Returns <code>true</code> if the given argument is a userdata.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#le">le(x)</a></td>
+<td class="summary">Returns a function implementing the <em>less than or equal</em> predicate for the given argument.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#lt">lt(x)</a></td>
+<td class="summary">Returns a function implementing the <em>less than</em> predicate for the given argument.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#neq">neq(x)</a></td>
+<td class="summary">Returns a function implementing the <em>not equal to</em> predicate for the given argument.</td>
+</tr>
+</table>
+<!--<br/>
+<br/> -->
+
+<h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+<dl class="function">
+<dt>
+<a name = "always"></a>
+<strong>always(x)</strong>
+</dt>
+<dd>
+<p>Returns a function always returning the specified value.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">x</span>
+the value to return.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">function</span></span>
+a function returning the specified value.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "eq"></a>
+<strong>eq(x)</strong>
+</dt>
+<dd>
+<p>Returns a function implementing the <em>equal to</em> predicate for the given argument.  A factory method that returns a single-argument function that test whether its argument is <em>equals to</em> the given value.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">x</span>
+the value used for comparison.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">function</span></span>
+a function implementing the <em>equal to</em> test for the given argument
+</ol>
+
+
+</dd>
+<dt>
+<a name = "ge"></a>
+<strong>ge(x)</strong>
+</dt>
+<dd>
+<p>Returns a function implementing the <em>greater than or equal to</em> predicate for the given argument.  A factory method that returns a single-argument function that test whether its argument is <em>greater than or equal to</em> the given value.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">x</span>
+the value used for comparison (must support the <code>&lt;=</code> operator).
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">function</span></span>
+a function implementing the <em>greater than or equal to</em> test for the given argument
+</ol>
+
+
+</dd>
+<dt>
+<a name = "gt"></a>
+<strong>gt(x)</strong>
+</dt>
+<dd>
+<p>Returns a function implementing the <em>greater than</em> predicate for the given argument.  A factory method that returns a single-argument function that test whether its argument is <em>greater than</em> the given value.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">x</span>
+the value used for comparison (must support the <code>&lt;</code> operator).
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">function</span></span>
+a function implementing the <em>greater than</em> test for the given argument
+</ol>
+
+
+</dd>
+<dt>
+<a name = "is_boolean"></a>
+<strong>is_boolean(x)</strong>
+</dt>
+<dd>
+<p>Returns <code>true</code> if the given argument is a boolean.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">x</span>
+the value to test.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">boolean</span></span>
+<code>true</code> if the given argument is a boolean, otherwise <code>false</code>.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "is_function"></a>
+<strong>is_function(x)</strong>
+</dt>
+<dd>
+<p>Returns <code>true</code> if the given argument is a function.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">x</span>
+the value to test.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">boolean</span></span>
+<code>true</code> if the given argument is a function, otherwise <code>false</code>.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "is_integer"></a>
+<strong>is_integer(x)</strong>
+</dt>
+<dd>
+<p>Returns <code>true</code> if the given argument is an integer.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">x</span>
+the value to test.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">boolean</span></span>
+<code>true</code> if the given argument is an integer, otherwise <code>false</code>.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "is_nil"></a>
+<strong>is_nil(x)</strong>
+</dt>
+<dd>
+<p>Returns <code>true</code> if the given argument is <code>nil</code>.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">x</span>
+the value to test.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">boolean</span></span>
+<code>true</code> if the given argument is <code>nil</code>, otherwise <code>false</code>.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "is_number"></a>
+<strong>is_number(x)</strong>
+</dt>
+<dd>
+<p>Returns <code>true</code> if the given argument is a number.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">x</span>
+the value to test.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">boolean</span></span>
+<code>true</code> if the given argument is a number, otherwise <code>false</code>.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "is_string"></a>
+<strong>is_string(x)</strong>
+</dt>
+<dd>
+<p>Returns <code>true</code> if the given argument is a string.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">x</span>
+the value to test.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">boolean</span></span>
+<code>true</code> if the given argument is a string, otherwise <code>false</code>.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "is_table"></a>
+<strong>is_table(x)</strong>
+</dt>
+<dd>
+<p>Returns <code>true</code> if the given argument is a table.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">x</span>
+the value to test.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">boolean</span></span>
+<code>true</code> if the given argument is a table, otherwise <code>false</code>.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "is_thread"></a>
+<strong>is_thread(x)</strong>
+</dt>
+<dd>
+<p>Returns <code>true</code> if the given argument is a coroutine.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">x</span>
+the value to test.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">boolean</span></span>
+<code>true</code> if the given argument is a coroutine, otherwise <code>false</code>.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "is_userdata"></a>
+<strong>is_userdata(x)</strong>
+</dt>
+<dd>
+<p>Returns <code>true</code> if the given argument is a userdata.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">x</span>
+the value to test.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">boolean</span></span>
+<code>true</code> if the given argument is a userdata, otherwise <code>false</code>.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "le"></a>
+<strong>le(x)</strong>
+</dt>
+<dd>
+<p>Returns a function implementing the <em>less than or equal</em> predicate for the given argument.  A factory method that returns a single-argument function that test whether its argument is <em>less than or equals</em> the given value.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">x</span>
+the value used for comparison (must support the <code>&lt;</code> operator).
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">function</span></span>
+a function implementing the <em>less than or equal</em> test for the given argument
+</ol>
+
+
+</dd>
+<dt>
+<a name = "lt"></a>
+<strong>lt(x)</strong>
+</dt>
+<dd>
+<p>Returns a function implementing the <em>less than</em> predicate for the given argument.  A factory method that returns a single-argument function that test whether its argument is <em>less than</em> the given value.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">x</span>
+the value used for comparison (must support the <code>&lt;=</code> operator).
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">function</span></span>
+a function implementing the <em>less than</em> test for the given argument
+</ol>
+
+
+</dd>
+<dt>
+<a name = "neq"></a>
+<strong>neq(x)</strong>
+</dt>
+<dd>
+<p>Returns a function implementing the <em>not equal to</em> predicate for the given argument.  A factory method that returns a single-argument function that test whether its argument is <em>not equal to</em> the given value.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">x</span>
+the value used for comparison.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">function</span></span>
+a function implementing the <em>not equal to</em> test for the given argument
+</ol>
+
+
+</dd>
+</dl>
+
+
+</div><!-- id="content" -->
+</div><!-- id="main" -->
+</div><!-- id="container" -->
+</body>
+</html>

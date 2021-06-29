@@ -1,0 +1,362 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+<title>Reference</title>
+<link rel="stylesheet" href="../ldoc_pale.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+<div id="main">
+
+
+<div id="navigation">
+<br/>
+<h1>ldk-core</h1>
+<ul>
+<li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+<h2>Modules</h2>
+<ul class="nowrap">
+<li><a href="../modules/ldk.array.html">ldk.array</a></li>
+<li><a href="../modules/ldk.debugx.html">ldk.debugx</a></li>
+<li><strong>ldk.func</strong></li>
+<li><a href="../modules/ldk.predicates.html">ldk.predicates</a></li>
+<li><a href="../modules/ldk.stringx.html">ldk.stringx</a></li>
+<li><a href="../modules/ldk.tablex.html">ldk.tablex</a></li>
+</ul>
+</div>
+
+<div id="content">
+
+<h1>Module <code>ldk.func</code></h1>
+
+Functional programming support module.
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+<tr>
+<td class="name" nowrap><a href="#always">always(v)</a></td>
+<td class="summary">Creates a function that always returns the specified value.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#compose">compose(f, g)</a></td>
+<td class="summary">Composes the specified functions.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#curry">curry(f)</a></td>
+<td class="summary">Curries the given function.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#identity">identity(v)</a></td>
+<td class="summary">The identity function.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#lambda">lambda(s)</a></td>
+<td class="summary">Compiles a string representing a lambda expression into a Lua function.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#memoize0">memoize0(f)</a></td>
+<td class="summary">Memoizes a function with no argument.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#memoize1">memoize1(f)</a></td>
+<td class="summary">Memoizes a function with one argument.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#memoize2">memoize2(f)</a></td>
+<td class="summary">Memoizes a function with two arguments.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#memoize3">memoize3(f)</a></td>
+<td class="summary">Memoizes a function with threw arguments.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#memoize4">memoize4(f)</a></td>
+<td class="summary">Memoizes a function with four arguments.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#partial">partial(a, f)</a></td>
+<td class="summary">Creates a partial application of the given function.</td>
+</tr>
+</table>
+<!--<br/>
+<br/> -->
+
+<h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+<dl class="function">
+<dt>
+<a name = "always"></a>
+<strong>always(v)</strong>
+</dt>
+<dd>
+<p>Creates a function that always returns the specified value.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">v</span>
+the value to be returned.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">function</span></span>
+a function returning always the specified value.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "compose"></a>
+<strong>compose(f, g)</strong>
+</dt>
+<dd>
+<p>Composes the specified functions.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">f</span>
+<span class="types"><span class="type">function</span></span>
+the first function to be composed.
+</li>
+<li><span class="parameter">g</span>
+<span class="types"><span class="type">function</span></span>
+the second function to be composed.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">function</span></span>
+a new function calculating <code>f(g(...))</code>.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "curry"></a>
+<strong>curry(f)</strong>
+</dt>
+<dd>
+<p>Curries the given function.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">f</span>
+<span class="types"><span class="type">function</span></span>
+the function to be curried.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">function</span></span>
+the curried function.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "identity"></a>
+<strong>identity(v)</strong>
+</dt>
+<dd>
+<p>The identity function.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">v</span>
+the value to be returned.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+the input value unmodified.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "lambda"></a>
+<strong>lambda(s)</strong>
+</dt>
+<dd>
+<p>Compiles a string representing a lambda expression into a Lua function. </p><p> A lambda expression has this form:</p><p>   <code>(input-parameters) =&gt; expression</code></p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">s</span>
+<span class="types"><span class="type">string</span></span>
+a valid lambda string.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+<li>
+<span class="types"><span class="type">function</span></span>
+the compiled lambda string, or <code>nil</code> if the compilation fails.</li>
+<li>
+<span class="types"><span class="type">string</span></span>
+an error message if the compilation fails, otherwise <code>nil</code>.</li>
+</ol>
+
+
+</dd>
+<dt>
+<a name = "memoize0"></a>
+<strong>memoize0(f)</strong>
+</dt>
+<dd>
+<p>Memoizes a function with no argument.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">f</span>
+<span class="types"><span class="type">function</span></span>
+the function to be memoized.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">function</span></span>
+the memoized function.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "memoize1"></a>
+<strong>memoize1(f)</strong>
+</dt>
+<dd>
+<p>Memoizes a function with one argument.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">f</span>
+<span class="types"><span class="type">function</span></span>
+the function to be memoized.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">function</span></span>
+the memoized function.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "memoize2"></a>
+<strong>memoize2(f)</strong>
+</dt>
+<dd>
+<p>Memoizes a function with two arguments.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">f</span>
+<span class="types"><span class="type">function</span></span>
+the function to be memoized.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">function</span></span>
+the memoized function.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "memoize3"></a>
+<strong>memoize3(f)</strong>
+</dt>
+<dd>
+<p>Memoizes a function with threw arguments.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">f</span>
+<span class="types"><span class="type">function</span></span>
+the function to be memoized.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">function</span></span>
+the memoized function.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "memoize4"></a>
+<strong>memoize4(f)</strong>
+</dt>
+<dd>
+<p>Memoizes a function with four arguments.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">f</span>
+<span class="types"><span class="type">function</span></span>
+the function to be memoized.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">function</span></span>
+the memoized function.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "partial"></a>
+<strong>partial(a, f)</strong>
+</dt>
+<dd>
+<p>Creates a partial application of the given function.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+the argument to fix.
+</li>
+<li><span class="parameter">f</span>
+<span class="types"><span class="type">function</span></span>
+the function.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">function</span></span>
+a new partial application of <code>f</code> using <code>a</code>.
+</ol>
+
+
+</dd>
+</dl>
+
+
+</div><!-- id="content" -->
+</div><!-- id="main" -->
+</div><!-- id="container" -->
+</body>
+</html>

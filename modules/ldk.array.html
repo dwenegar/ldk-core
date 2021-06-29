@@ -1,0 +1,1977 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+<title>Reference</title>
+<link rel="stylesheet" href="../ldoc_pale.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+<div id="main">
+
+
+<div id="navigation">
+<br/>
+<h1>ldk-core</h1>
+<ul>
+<li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+<li><a href="#Function_Types">Function Types </a></li>
+</ul>
+
+<h2>Modules</h2>
+<ul class="nowrap">
+<li><strong>ldk.array</strong></li>
+<li><a href="../modules/ldk.debugx.html">ldk.debugx</a></li>
+<li><a href="../modules/ldk.func.html">ldk.func</a></li>
+<li><a href="../modules/ldk.predicates.html">ldk.predicates</a></li>
+<li><a href="../modules/ldk.stringx.html">ldk.stringx</a></li>
+<li><a href="../modules/ldk.tablex.html">ldk.tablex</a></li>
+</ul>
+</div>
+
+<div id="content">
+
+<h1>Module <code>ldk.array</code></h1>
+
+Provides methods for creating, manipulating, and searching arrays.
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+<tr>
+<td class="name" nowrap><a href="#aggregate">aggregate(a, acc, f)</a></td>
+<td class="summary">Applies an accumulator function over an array.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#all">all(a, p)</a></td>
+<td class="summary">Determines whether all the elements of an array satisfy a condition.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#any">any(a, p)</a></td>
+<td class="summary">Determines whether any element of an array satisfy a condition.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#avg">avg(a[, f])</a></td>
+<td class="summary">Calculates the average of the array of numbers that are obtained by applying a transform function to each element of an array.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#binary_search">binary_search(a, v[, from[, to]][, cmp])</a></td>
+<td class="summary">Searches a range of elements in a sorted array for a value using the specified comparer.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#cat">cat(...)</a></td>
+<td class="summary">Concatenates the given arrays.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#clear">clear(a)</a></td>
+<td class="summary">Removes all the elements from an array.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#cmp">cmp(a1, a2, cmp)</a></td>
+<td class="summary">Compares two arrays using a specified comparer.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#contains">contains(a, v[, from[, to[, eq]]])</a></td>
+<td class="summary">Determines whether the specified range of an array contains a specified value using the specified equality comparer.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#copy">copy(a1[, from1[, to1]], a2[, from2])</a></td>
+<td class="summary">Copies a range of elements of an array to another array starting at the specified index.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#count">count(a, p)</a></td>
+<td class="summary">Counts how many elements of an array satisfy a condition.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#distinct">distinct(a[, eq])</a></td>
+<td class="summary">Returns distinct elements from an array.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#drop">drop(a[, n=1])</a></td>
+<td class="summary">Removes a specified number of elements from the beginning of an array.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#drop_while">drop_while(a, p)</a></td>
+<td class="summary">Removes elements from the beginning of an array as long as they satisfy a specified condition.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#each">each(a[, from[, to]], f)</a></td>
+<td class="summary">Invokes a function on each element of a range of elements of an array.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#eq">eq(a1, a2[, eq])</a></td>
+<td class="summary">Compares two arrays for equality using the specified equality comparer.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#except">except(a1, a2)</a></td>
+<td class="summary">Produces the set difference of two arrays.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#fill">fill(a, v[, from[, to]])</a></td>
+<td class="summary">Fills a range of an array with a specified value.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#filter">filter(a, p)</a></td>
+<td class="summary">Filters an array based on a predicate.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#find_all">find_all(a[, from[, to]], p)</a></td>
+<td class="summary">Searches a range of elements of an array for all the elements satisfying a specified condition.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#group_by">group_by(a, f)</a></td>
+<td class="summary">Groups the elements of an array according to a specified key selector.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#index_of">index_of(a, v[, from[, to[, eq]]])</a></td>
+<td class="summary">Searches an array for the specified value using a specified equality comparer, and returns the index of the first occurrence within the specified range.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#insert">insert(a1, pos, a2)</a></td>
+<td class="summary">Inserts a specified value at the given position of a giving array, shifting its elements.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#insert_all">insert_all(a1, a2[, pos=#a1 + 1][, p])</a></td>
+<td class="summary">Inserts the values of an array at the given position in another array, shifting its elements.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#intersect">intersect(a1, a2)</a></td>
+<td class="summary">Returns the set intersection of two arrays.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#is_empty">is_empty(a)</a></td>
+<td class="summary">Determines whether an array is empty or not.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#last_index_of">last_index_of(a, v[, from[, to[, eq]]])</a></td>
+<td class="summary">Searches an array for the specified value using a specified equality comparer, and returns the index of the last occurrence within the specified range.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#map">map(a, f)</a></td>
+<td class="summary">Projects each element of an array into a new value.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#map_many">map_many(a, f)</a></td>
+<td class="summary">Applies a transform function to the elements of an array and flatten the resulting array.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#max">max(a[, f])</a></td>
+<td class="summary">Applies a transform function to each element of an array and return the the maximum of the projected values.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#max_by">max_by(a, f)</a></td>
+<td class="summary">Applies a transform function to each element of an array and returns the maximum according to the projected values.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#min">min(a[, f])</a></td>
+<td class="summary">Applies a transform function to each element of an array and return the the minimum of the projected values.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#min_by">min_by(a, f)</a></td>
+<td class="summary">Applies a transform function to each element of an array and returns the minimum according to the projected values.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#of">of(...)</a></td>
+<td class="summary">Creates an array using the specified values.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#range">range(a, from[, to])</a></td>
+<td class="summary">Extracts a range of elements of an array.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#remove_all">remove_all(a, v[, from[, to]][, eq])</a></td>
+<td class="summary">Searches a range of elements of an array for all the occurrences of the specified value using a specified equality comparer, and remove them.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#remove_all_if">remove_all_if(a[, from[, to]], p)</a></td>
+<td class="summary">Searches a range of elements of an array for all the elements satisfying a specified condition, and remove them.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#remove_at">remove_at(a[, from[, to]])</a></td>
+<td class="summary">Removes all the elements of an array within a specified range.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#remove_if">remove_if(a[, from[, to]], p)</a></td>
+<td class="summary">Searches a range of elements of an array for the first element satisfying a specified condition, and remove it.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#rep">rep(v, n)</a></td>
+<td class="summary">Creates an array of the specified length using the given value.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#resize">resize(a, n)</a></td>
+<td class="summary">Resize an array to the specified length extending.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#seq">seq(n, from[, step])</a></td>
+<td class="summary">Creates an array containing a sequence of numbers using the given parameters.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#shuffle">shuffle(a[, from[, to]])</a></td>
+<td class="summary">Shuffles in-place a range of elements of an array..</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#sum">sum(a[, f])</a></td>
+<td class="summary">Calculates the sum of the array of numbers that are obtained by applying a transform function to each element of an array.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#take">take(a[, n=1])</a></td>
+<td class="summary">Returns a specified number of elements from the start an array.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#take_while">take_while(a, p)</a></td>
+<td class="summary">Returns elements from an array as long as a specified condition is true.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#to_bag">to_bag(a[, from[, to]])</a></td>
+<td class="summary">Creates a bag from a range of elements of an array.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#to_map">to_map(a[, from[, to[, f]]])</a></td>
+<td class="summary">Creates a map from a range of elements of an array.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#to_set">to_set(a[, from[, to]])</a></td>
+<td class="summary">Creates a set from a range of elements of an array.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#to_string">to_string(a[, from[, to]])</a></td>
+<td class="summary">Returns the string representation of a range of elements of an array.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#values">values(a[, from[, to]])</a></td>
+<td class="summary">Returns an iterator over a specified range of elements of an array.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#with">with(n, f)</a></td>
+<td class="summary">Creates an array of the specified length using a generator function.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#zip">zip(a1, a2, f)</a></td>
+<td class="summary">Applies a specified function to the corresponding elements of two arrays, and returns the resulting elements.</td>
+</tr>
+</table>
+<h2><a href="#Function_Types">Function Types </a></h2>
+<table class="function_list">
+<tr>
+<td class="name" nowrap><a href="#comparer">comparer(x, y)</a></td>
+<td class="summary">Compares two elements and returns a value indicating whether one is less than, equal to, or greater than the other.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#eq_comparer">eq_comparer(x, y)</a></td>
+<td class="summary">Compares two elements for equality.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#key_selector">key_selector(x, i)</a></td>
+<td class="summary">Signature of a key selector function.</td>
+</tr>
+<tr>
+<td class="name" nowrap><a href="#predicate">predicate(x, i)</a></td>
+<td class="summary">Tests an array element for a condition.</td>
+</tr>
+</table>
+<!--<br/>
+<br/> -->
+
+<h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+<dl class="function">
+<dt>
+<a name = "aggregate"></a>
+<strong>aggregate(a, acc, f)</strong>
+</dt>
+<dd>
+<p>Applies an accumulator function over an array.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+<span class="types"><span class="type">table</span></span>
+an array to aggregate over.
+</li>
+<li><span class="parameter">acc</span>
+the initial value of the accumulator.
+</li>
+<li><span class="parameter">f</span>
+<span class="types"><span class="type">function</span></span>
+an accumulator function to be applied to each element; the second argument is the previous accumulator's value.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+the final accumulator value.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "all"></a>
+<strong>all(a, p)</strong>
+</dt>
+<dd>
+<p>Determines whether all the elements of an array satisfy a condition.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+<span class="types"><span class="type">table</span></span>
+an array containing the elements to apply the predicate to.
+</li>
+<li><span class="parameter">p</span>
+<span class="types"><a class="type" href="../modules/ldk.array.html#predicate">predicate</a></span>
+a function to test each element for a condition.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">boolean</span></span>
+<code>true</code> if every element of the array satisfies the specified predicate, or if the array is empty, otherwise <code>false</code>.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "any"></a>
+<strong>any(a, p)</strong>
+</dt>
+<dd>
+<p>Determines whether any element of an array satisfy a condition.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+<span class="types"><span class="type">table</span></span>
+an array containing the elements to apply the predicate to.
+</li>
+<li><span class="parameter">p</span>
+<span class="types"><a class="type" href="../modules/ldk.array.html#predicate">predicate</a></span>
+a function to test each element for a condition.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">boolean</span></span>
+<code>true</code> if any element of the array satisfies the specified predicate, or if the array is empty, otherwise <code>false</code>.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "avg"></a>
+<strong>avg(a[, f])</strong>
+</dt>
+<dd>
+<p>Calculates the average of the array of numbers that are obtained by applying a transform function to each element of an array.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+<span class="types"><span class="type">table</span></span>
+an array to calculate the average of.
+</li>
+<li><span class="parameter">f</span>
+<span class="types"><span class="type">transform</span></span>
+a transform function to apply to each element.
+(<em>optional</em>)
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">number</span></span>
+the average of the projected values; <code>nil</code> if the array is empty.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "binary_search"></a>
+<strong>binary_search(a, v[, from[, to]][, cmp])</strong>
+</dt>
+<dd>
+<p>Searches a range of elements in a sorted array for a value using the specified comparer.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+<span class="types"><span class="type">table</span></span>
+the sorted array to be searched.
+</li>
+<li><span class="parameter">v</span>
+the value to search.
+</li>
+<li><span class="parameter">from</span>
+<span class="types"><span class="type">integer</span></span>
+the starting index of the range to search.
+(<em>optional</em>)
+</li>
+<li><span class="parameter">to</span>
+<span class="types"><span class="type">integer</span></span>
+the ending index of the range to search.
+(<em>optional</em>)
+</li>
+<li><span class="parameter">cmp</span>
+<span class="types"><span class="type">function</span></span>
+the comparer used to compare values (see <a href="../modules/ldk.array.html#comparer">comparer</a>).
+(<em>optional</em>)
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">integer</span></span>
+the index of the specified value in the array; or <code>nil</code> if the element is not found.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "cat"></a>
+<strong>cat(...)</strong>
+</dt>
+<dd>
+<p>Concatenates the given arrays.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">...</span>
+<span class="types"><span class="type">table</span></span>
+the arrays to concatenate.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">table</span></span>
+an array containing the concatenated elements of the input arrays.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "clear"></a>
+<strong>clear(a)</strong>
+</dt>
+<dd>
+<p>Removes all the elements from an array.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+<span class="types"><span class="type">table</span></span>
+an array to clear.
+</li>
+</ul>
+
+
+
+</dd>
+<dt>
+<a name = "cmp"></a>
+<strong>cmp(a1, a2, cmp)</strong>
+</dt>
+<dd>
+<p>Compares two arrays using a specified comparer.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a1</span>
+<span class="types"><span class="type">table</span></span>
+the first array to be compared.
+</li>
+<li><span class="parameter">a2</span>
+<span class="types"><span class="type">table</span></span>
+the second array to be compared.
+</li>
+<li><span class="parameter">cmp</span>
+<span class="types"><span class="type">function</span></span>
+the comparator used to compare values (see <a href="../modules/ldk.array.html#comparer">comparer</a>).
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">int</span></span>
+a positive number if the first array is greater than the second; a negative number if the second array is greater than the first; zero otherwise.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "contains"></a>
+<strong>contains(a, v[, from[, to[, eq]]])</strong>
+</dt>
+<dd>
+<p>Determines whether the specified range of an array contains a specified value using the specified equality comparer.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+<span class="types"><span class="type">table</span></span>
+an array in which to locate the value.
+</li>
+<li><span class="parameter">v</span>
+the value to locate in the array.
+</li>
+<li><span class="parameter">from</span>
+<span class="types"><span class="type">integer</span></span>
+the starting index of the range to search.
+(<em>optional</em>)
+</li>
+<li><span class="parameter">to</span>
+<span class="types"><span class="type">integer</span></span>
+the ending index of the range to search.
+(<em>optional</em>)
+</li>
+<li><span class="parameter">eq</span>
+<span class="types"><span class="type">function</span></span>
+the function used to the the values for equality (see <a href="../modules/ldk.array.html#eq_comparer">eq_comparer</a>).
+(<em>optional</em>)
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">boolean</span></span>
+<code>true</code> if the array contains the specified value; <code>false</code> otherwise.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "copy"></a>
+<strong>copy(a1[, from1[, to1]], a2[, from2])</strong>
+</dt>
+<dd>
+<p>Copies a range of elements of an array to another array starting at the specified index.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a1</span>
+<span class="types"><span class="type">table</span></span>
+the array to copy from.
+</li>
+<li><span class="parameter">from1</span>
+<span class="types"><span class="type">integer</span></span>
+the starting index of the range to copy.
+(<em>optional</em>)
+</li>
+<li><span class="parameter">to1</span>
+<span class="types"><span class="type">integer</span></span>
+the ending index of the range to copy.
+(<em>optional</em>)
+</li>
+<li><span class="parameter">a2</span>
+<span class="types"><span class="type">table</span></span>
+the array to copy to.
+</li>
+<li><span class="parameter">from2</span>
+<span class="types"><span class="type">integer</span></span>
+the index at which copying begins.
+(<em>optional</em>)
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">table</span></span>
+the destination array.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "count"></a>
+<strong>count(a, p)</strong>
+</dt>
+<dd>
+<p>Counts how many elements of an array satisfy a condition.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+<span class="types"><span class="type">table</span></span>
+an array containing the elements to be tested and counted.
+</li>
+<li><span class="parameter">p</span>
+<span class="types"><span class="type">function</span></span>
+a function to test each element (see <a href="../modules/ldk.array.html#predicate">predicate</a>).
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">integer</span></span>
+the number of elements satisfying the specified predicate.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "distinct"></a>
+<strong>distinct(a[, eq])</strong>
+</dt>
+<dd>
+<p>Returns distinct elements from an array.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+<span class="types"><span class="type">table</span></span>
+the array to remove the duplicated elements from.
+</li>
+<li><span class="parameter">eq</span>
+<span class="types"><span class="type">function</span></span>
+the function used to the the values for equality (see <a href="../modules/ldk.array.html#eq_comparer">eq_comparer</a>).
+(<em>optional</em>)
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">table</span></span>
+a new array containing distinct elements from the input array.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "drop"></a>
+<strong>drop(a[, n=1])</strong>
+</dt>
+<dd>
+<p>Removes a specified number of elements from the beginning of an array.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+<span class="types"><span class="type">table</span></span>
+an array to return elements from.
+</li>
+<li><span class="parameter">n</span>
+<span class="types"><span class="type">integer</span></span>
+the number of elements to return.
+(<em>default</em> 1)
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">table</span></span>
+an array containing the elements occurring after the specified index in the input array.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "drop_while"></a>
+<strong>drop_while(a, p)</strong>
+</dt>
+<dd>
+<p>Removes elements from the beginning of an array as long as they satisfy a specified condition.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+<span class="types"><span class="type">table</span></span>
+an array to return elements from.
+</li>
+<li><span class="parameter">p</span>
+<span class="types"><span class="type">function</span></span>
+a function to test each element (see <a href="../modules/ldk.array.html#predicate">predicate</a>).
+</li>
+</ul>
+
+
+
+</dd>
+<dt>
+<a name = "each"></a>
+<strong>each(a[, from[, to]], f)</strong>
+</dt>
+<dd>
+<p>Invokes a function on each element of a range of elements of an array.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+<span class="types"><span class="type">table</span></span>
+an array to invoke the function on.
+</li>
+<li><span class="parameter">from</span>
+<span class="types"><span class="type">integer</span></span>
+the starting index of the range.
+(<em>optional</em>)
+</li>
+<li><span class="parameter">to</span>
+<span class="types"><span class="type">integer</span></span>
+the ending index of the range.
+(<em>optional</em>)
+</li>
+<li><span class="parameter">f</span>
+<span class="types"><span class="type">function</span></span>
+a function to invoke on each element; the second parameter is the index of the element in the array.
+</li>
+</ul>
+
+
+
+</dd>
+<dt>
+<a name = "eq"></a>
+<strong>eq(a1, a2[, eq])</strong>
+</dt>
+<dd>
+<p>Compares two arrays for equality using the specified equality comparer.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a1</span>
+<span class="types"><span class="type">table</span></span>
+the first array to be compared.
+</li>
+<li><span class="parameter">a2</span>
+<span class="types"><span class="type">table</span></span>
+the second array to be compared.
+</li>
+<li><span class="parameter">eq</span>
+<span class="types"><span class="type">function</span></span>
+the function used to the the values for equality (see <a href="../modules/ldk.array.html#eq_comparer">eq_comparer</a>).
+(<em>optional</em>)
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">boolean</span></span>
+<code>true</code> if the arrays are equals, otherwise <code>false</code>.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "except"></a>
+<strong>except(a1, a2)</strong>
+</dt>
+<dd>
+<p>Produces the set difference of two arrays.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a1</span>
+<span class="types"><span class="type">table</span></span>
+an array whose elements that are not also in <code>a2</code> will be returned.
+</li>
+<li><span class="parameter">a2</span>
+<span class="types"><span class="type">table</span></span>
+an array whose elements that also occur in <code>a1</code> will cause those elements to be removed from the returned sequence.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">table</span></span>
+an array containing the set difference of the two input arrays.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "fill"></a>
+<strong>fill(a, v[, from[, to]])</strong>
+</dt>
+<dd>
+<p>Fills a range of an array with a specified value.  If the value is <code>nil</code> the function does nothing.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+<span class="types"><span class="type">table</span></span>
+an array to fill.
+</li>
+<li><span class="parameter">v</span>
+the value to use to fill the array.
+</li>
+<li><span class="parameter">from</span>
+<span class="types"><span class="type">integer</span></span>
+the starting index of the range to fill.
+(<em>optional</em>)
+</li>
+<li><span class="parameter">to</span>
+<span class="types"><span class="type">integer</span></span>
+the ending index of the range to fill.
+(<em>optional</em>)
+</li>
+</ul>
+
+
+
+</dd>
+<dt>
+<a name = "filter"></a>
+<strong>filter(a, p)</strong>
+</dt>
+<dd>
+<p>Filters an array based on a predicate.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+<span class="types"><span class="type">table</span></span>
+an array to filter.
+</li>
+<li><span class="parameter">p</span>
+<span class="types"><span class="type">function</span></span>
+a function to test each element (see <a href="../modules/ldk.array.html#predicate">predicate</a>).
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">table</span></span>
+an array containing elements from the input array satisfying the specified condition.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "find_all"></a>
+<strong>find_all(a[, from[, to]], p)</strong>
+</dt>
+<dd>
+<p>Searches a range of elements of an array for all the elements satisfying a specified condition.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+<span class="types"><span class="type">table</span></span>
+an array to be searched.
+</li>
+<li><span class="parameter">from</span>
+<span class="types"><span class="type">integer</span></span>
+the starting index of the range to search.
+(<em>optional</em>)
+</li>
+<li><span class="parameter">to</span>
+<span class="types"><span class="type">integer</span></span>
+the ending index of the range to search.
+(<em>optional</em>)
+</li>
+<li><span class="parameter">p</span>
+<span class="types"><span class="type">function</span></span>
+a function to test each element (see <a href="../modules/ldk.array.html#predicate">predicate</a>).
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">table</span></span>
+the elements satisfying the specified condition, otherwise <code>nil</code>.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "group_by"></a>
+<strong>group_by(a, f)</strong>
+</dt>
+<dd>
+<p>Groups the elements of an array according to a specified key selector.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+<span class="types"><span class="type">table</span></span>
+an array whose elements to group.
+</li>
+<li><span class="parameter">f</span>
+<span class="types"><span class="type">function</span></span>
+a function to extract the key for each element (see <a href="../modules/ldk.array.html#key_selector">key_selector</a>).
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">table</span></span>
+a collection of elements where each element represents a a projection over a group and its key.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "index_of"></a>
+<strong>index_of(a, v[, from[, to[, eq]]])</strong>
+</dt>
+<dd>
+<p>Searches an array for the specified value using a specified equality comparer, and returns the index of the first occurrence within the specified range.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+<span class="types"><span class="type">table</span></span>
+an array to be searched.
+</li>
+<li><span class="parameter">v</span>
+the value to look for.
+</li>
+<li><span class="parameter">from</span>
+<span class="types"><span class="type">integer</span></span>
+the starting index of the range to search.
+(<em>optional</em>)
+</li>
+<li><span class="parameter">to</span>
+<span class="types"><span class="type">integer</span></span>
+the ending index of the range to search.
+(<em>optional</em>)
+</li>
+<li><span class="parameter">eq</span>
+<span class="types"><span class="type">function</span></span>
+the function used to the the values for equality (see <a href="../modules/ldk.array.html#eq_comparer">eq_comparer</a>).
+(<em>optional</em>)
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">integer</span></span>
+the index of the first occurrences of the specified value, if found, otherwise <code>nil</code>.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "insert"></a>
+<strong>insert(a1, pos, a2)</strong>
+</dt>
+<dd>
+<p>Inserts a specified value at the given position of a giving array, shifting its elements.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a1</span>
+<span class="types"><span class="type">table</span></span>
+the array to insert the values into.
+</li>
+<li><span class="parameter">pos</span>
+<span class="types"><span class="type">integer</span></span>
+the position at which to insert the new values.
+</li>
+<li><span class="parameter">a2</span>
+<span class="types"><span class="type">table</span></span>
+the array with the values to insert.
+</li>
+</ul>
+
+
+
+</dd>
+<dt>
+<a name = "insert_all"></a>
+<strong>insert_all(a1, a2[, pos=#a1 + 1][, p])</strong>
+</dt>
+<dd>
+<p>Inserts the values of an array at the given position in another array, shifting its elements.  If a predicated is specified, the source array is filtered using it.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a1</span>
+<span class="types"><span class="type">table</span></span>
+the array with the values to insert.
+</li>
+<li><span class="parameter">a2</span>
+<span class="types"><span class="type">table</span></span>
+the array to insert the values into.
+</li>
+<li><span class="parameter">pos</span>
+<span class="types"><span class="type">integer</span></span>
+the position at which to insert the new values.
+(<em>default</em> #a1 + 1)
+</li>
+<li><span class="parameter">p</span>
+<span class="types"><span class="type">function</span></span>
+a function to test each element (see <a href="../modules/ldk.array.html#predicate">predicate</a>).
+(<em>optional</em>)
+</li>
+</ul>
+
+
+
+</dd>
+<dt>
+<a name = "intersect"></a>
+<strong>intersect(a1, a2)</strong>
+</dt>
+<dd>
+<p>Returns the set intersection of two arrays.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a1</span>
+<span class="types"><span class="type">table</span></span>
+an array whose distinct elements that also appear in <code>a2</code> will be returned.
+</li>
+<li><span class="parameter">a2</span>
+<span class="types"><span class="type">table</span></span>
+an array whose distinct elements that also appear in <code>a1</code> will be returned.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">table</span></span>
+an array that contains the elements that appear in <code>a1</code> and <code>a2</code>.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "is_empty"></a>
+<strong>is_empty(a)</strong>
+</dt>
+<dd>
+<p>Determines whether an array is empty or not.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+<span class="types"><span class="type">table</span></span>
+an array containing the elements to be tested.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">boolean</span></span>
+<code>true</code> if the array is empty, otherwise <code>false</code>.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "last_index_of"></a>
+<strong>last_index_of(a, v[, from[, to[, eq]]])</strong>
+</dt>
+<dd>
+<p>Searches an array for the specified value using a specified equality comparer, and returns the index of the last occurrence within the specified range.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+<span class="types"><span class="type">table</span></span>
+an array to be searched.
+</li>
+<li><span class="parameter">v</span>
+the value to look for.
+</li>
+<li><span class="parameter">from</span>
+<span class="types"><span class="type">integer</span></span>
+the starting index of the range to search.
+(<em>optional</em>)
+</li>
+<li><span class="parameter">to</span>
+<span class="types"><span class="type">integer</span></span>
+the ending index of the range to search.
+(<em>optional</em>)
+</li>
+<li><span class="parameter">eq</span>
+<span class="types"><span class="type">function</span></span>
+the function used to the the values for equality (see <a href="../modules/ldk.array.html#eq_comparer">eq_comparer</a>).
+(<em>optional</em>)
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">integer</span></span>
+the index of the last occurrences of the specified value, if found, otherwise <code>nil</code>.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "map"></a>
+<strong>map(a, f)</strong>
+</dt>
+<dd>
+<p>Projects each element of an array into a new value.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+<span class="types"><span class="type">table</span></span>
+an array to invoke the transforms function on.
+</li>
+<li><span class="parameter">f</span>
+<span class="types"><span class="type">transform</span></span>
+a transform function to apply to each element; the second parameter is the index of the element.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">table</span></span>
+an array whose elements are the the result of applying the specified transform function on the elements of the input array.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "map_many"></a>
+<strong>map_many(a, f)</strong>
+</dt>
+<dd>
+<p>Applies a transform function to the elements of an array and flatten the resulting array.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+<span class="types"><span class="type">table</span></span>
+the array to invoke the transformation function on.
+</li>
+<li><span class="parameter">f</span>
+<span class="types"><span class="type">function</span></span>
+a transform function to apply to each element; the second parameter is the position of the element in the array; if the function returns <code>nil</code> the element will be skipped; the function must return an array.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">table</span></span>
+a new array whose elements are the the result of invoking the specified transform function on the elements of an array.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "max"></a>
+<strong>max(a[, f])</strong>
+</dt>
+<dd>
+<p>Applies a transform function to each element of an array and return the the maximum of the projected values.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+<span class="types"><span class="type">table</span></span>
+an array to determine the maximum value of.
+</li>
+<li><span class="parameter">f</span>
+<span class="types"><span class="type">transform</span></span>
+a transform function to apply to each element.
+(<em>optional</em>)
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+the maximum projected value in the array, or <code>nil</code> if the array is empty.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "max_by"></a>
+<strong>max_by(a, f)</strong>
+</dt>
+<dd>
+<p>Applies a transform function to each element of an array and returns the maximum according to the projected values.  or <code>nil</code> if the array is empty.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+<span class="types"><span class="type">table</span></span>
+an array to determine the maximum value of.
+</li>
+<li><span class="parameter">f</span>
+<span class="types"><span class="type">transform</span></span>
+a transform function to apply to each element.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+the maximum value in the array according to the transform function,
+</ol>
+
+
+</dd>
+<dt>
+<a name = "min"></a>
+<strong>min(a[, f])</strong>
+</dt>
+<dd>
+<p>Applies a transform function to each element of an array and return the the minimum of the projected values.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+<span class="types"><span class="type">table</span></span>
+an array to determine the minimum value of.
+</li>
+<li><span class="parameter">f</span>
+<span class="types"><span class="type">transform</span></span>
+a transform function to apply to each element.
+(<em>optional</em>)
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+the minimum projected value in the array, or <code>nil</code> if the array is empty.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "min_by"></a>
+<strong>min_by(a, f)</strong>
+</dt>
+<dd>
+<p>Applies a transform function to each element of an array and returns the minimum according to the projected values.  or <code>nil</code> if the array is empty.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+<span class="types"><span class="type">table</span></span>
+an array to determine the minimum value of.
+</li>
+<li><span class="parameter">f</span>
+<span class="types"><span class="type">transform</span></span>
+a transform function to apply to each element.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+the minimum value in the array according to the transform function,
+</ol>
+
+
+</dd>
+<dt>
+<a name = "of"></a>
+<strong>of(...)</strong>
+</dt>
+<dd>
+<p>Creates an array using the specified values.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">...</span>
+the values to be placed in the array.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">table</span></span>
+a new array with the given values.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "range"></a>
+<strong>range(a, from[, to])</strong>
+</dt>
+<dd>
+<p>Extracts a range of elements of an array.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+<span class="types"><span class="type">table</span></span>
+an array to extract the elements from.
+</li>
+<li><span class="parameter">from</span>
+<span class="types"><span class="type">integer</span></span>
+the starting index of the range to extract.
+</li>
+<li><span class="parameter">to</span>
+<span class="types"><span class="type">integer</span></span>
+the ending index of the range to extract.
+(<em>optional</em>)
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">an</span></span>
+array with the elements of the input array in the specified range.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "remove_all"></a>
+<strong>remove_all(a, v[, from[, to]][, eq])</strong>
+</dt>
+<dd>
+<p>Searches a range of elements of an array for all the occurrences of the specified value using a specified equality comparer, and remove them.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+<span class="types"><span class="type">table</span></span>
+the array to remove the values from.
+</li>
+<li><span class="parameter">v</span>
+the value to be removed.
+</li>
+<li><span class="parameter">from</span>
+<span class="types"><span class="type">integer</span></span>
+the starting index of the range to search.
+(<em>optional</em>)
+</li>
+<li><span class="parameter">to</span>
+<span class="types"><span class="type">integer</span></span>
+the ending index of the range to search.
+(<em>optional</em>)
+</li>
+<li><span class="parameter">eq</span>
+<span class="types"><span class="type">function</span></span>
+the function used to the the values for equality (see <a href="../modules/ldk.array.html#eq_comparer">eq_comparer</a>).
+(<em>optional</em>)
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">integer</span></span>
+the number of elements removed.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "remove_all_if"></a>
+<strong>remove_all_if(a[, from[, to]], p)</strong>
+</dt>
+<dd>
+<p>Searches a range of elements of an array for all the elements satisfying a specified condition, and remove them.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+<span class="types"><span class="type">table</span></span>
+an array to be searched.
+</li>
+<li><span class="parameter">from</span>
+<span class="types"><span class="type">integer</span></span>
+the starting index of the range to search.
+(<em>optional</em>)
+</li>
+<li><span class="parameter">to</span>
+<span class="types"><span class="type">integer</span></span>
+the ending index of the range to search.
+(<em>optional</em>)
+</li>
+<li><span class="parameter">p</span>
+<span class="types"><span class="type">function</span></span>
+a function to test each element (see <a href="../modules/ldk.array.html#predicate">predicate</a>).
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">integer</span></span>
+the number of elements removed.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "remove_at"></a>
+<strong>remove_at(a[, from[, to]])</strong>
+</dt>
+<dd>
+<p>Removes all the elements of an array within a specified range.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+<span class="types"><span class="type">table</span></span>
+an array to remove the elements from.
+</li>
+<li><span class="parameter">from</span>
+<span class="types"><span class="type">integer</span></span>
+the starting index of the range to remove.
+(<em>optional</em>)
+</li>
+<li><span class="parameter">to</span>
+<span class="types"><span class="type">integer</span></span>
+the ending index of the range to remove.
+(<em>optional</em>)
+</li>
+</ul>
+
+
+
+</dd>
+<dt>
+<a name = "remove_if"></a>
+<strong>remove_if(a[, from[, to]], p)</strong>
+</dt>
+<dd>
+<p>Searches a range of elements of an array for the first element satisfying a specified condition, and remove it.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+<span class="types"><span class="type">table</span></span>
+an array to be searched.
+</li>
+<li><span class="parameter">from</span>
+<span class="types"><span class="type">integer</span></span>
+the starting index of the range to search.
+(<em>optional</em>)
+</li>
+<li><span class="parameter">to</span>
+<span class="types"><span class="type">integer</span></span>
+the ending index of the range to search.
+(<em>optional</em>)
+</li>
+<li><span class="parameter">p</span>
+<span class="types"><span class="type">function</span></span>
+a function to test each element (see <a href="../modules/ldk.array.html#predicate">predicate</a>).
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">boolean</span></span>
+<code>true</code> if any element is removed, otherwise <code>false</code>.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "rep"></a>
+<strong>rep(v, n)</strong>
+</dt>
+<dd>
+<p>Creates an array of the specified length using the given value.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">v</span>
+the value to generate the array with.
+</li>
+<li><span class="parameter">n</span>
+<span class="types"><span class="type">integer</span></span>
+the length of the array to generate.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">table</span></span>
+an array of the specified length containing the given value.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "resize"></a>
+<strong>resize(a, n)</strong>
+</dt>
+<dd>
+<p>Resize an array to the specified length extending.  If the new length is greater than the array length, the array will be extended by duplicating its last element, or <code>true</code> if the array is empty.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+<span class="types"><span class="type">table</span></span>
+the array to be grown.
+</li>
+<li><span class="parameter">n</span>
+<span class="types"><span class="type">integer</span></span>
+the new length of the array.
+</li>
+</ul>
+
+
+
+</dd>
+<dt>
+<a name = "seq"></a>
+<strong>seq(n, from[, step])</strong>
+</dt>
+<dd>
+<p>Creates an array containing a sequence of numbers using the given parameters.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">n</span>
+<span class="types"><span class="type">integer</span></span>
+the length of the sequence to generate.
+</li>
+<li><span class="parameter">from</span>
+<span class="types"><span class="type">integer</span></span>
+the first value of the sequence.
+</li>
+<li><span class="parameter">step</span>
+<span class="types"><span class="type">number</span></span>
+the difference between two consecutive values of the sequence.
+(<em>optional</em>)
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">table</span></span>
+an array of numbers of the specified length.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "shuffle"></a>
+<strong>shuffle(a[, from[, to]])</strong>
+</dt>
+<dd>
+<p>Shuffles in-place a range of elements of an array..</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+<span class="types"><span class="type">table</span></span>
+an array to shuffle.
+</li>
+<li><span class="parameter">from</span>
+<span class="types"><span class="type">integer</span></span>
+the starting index of the range to shuffle.
+(<em>optional</em>)
+</li>
+<li><span class="parameter">to</span>
+<span class="types"><span class="type">integer</span></span>
+the ending index of the range to shuffle.
+(<em>optional</em>)
+</li>
+</ul>
+
+
+
+</dd>
+<dt>
+<a name = "sum"></a>
+<strong>sum(a[, f])</strong>
+</dt>
+<dd>
+<p>Calculates the sum of the array of numbers that are obtained by applying a transform function to each element of an array.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+<span class="types"><span class="type">table</span></span>
+an array to calculate the average of.
+</li>
+<li><span class="parameter">f</span>
+<span class="types"><span class="type">transform</span></span>
+a transform function to apply to each element.
+(<em>optional</em>)
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">number</span></span>
+the sum of the projected values.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "take"></a>
+<strong>take(a[, n=1])</strong>
+</dt>
+<dd>
+<p>Returns a specified number of elements from the start an array.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+<span class="types"><span class="type">table</span></span>
+an array to return elements from.
+</li>
+<li><span class="parameter">n</span>
+<span class="types"><span class="type">integer</span></span>
+the number of elements to return.
+(<em>default</em> 1)
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">table</span></span>
+an array containing the specified number of elements from the start of the input array.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "take_while"></a>
+<strong>take_while(a, p)</strong>
+</dt>
+<dd>
+<p>Returns elements from an array as long as a specified condition is true.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+<span class="types"><span class="type">table</span></span>
+an array to return elements from.
+</li>
+<li><span class="parameter">p</span>
+<span class="types"><span class="type">function</span></span>
+a function to test each element (see <a href="../modules/ldk.array.html#predicate">predicate</a>).
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">table</span></span>
+an array containing elements from the input array occurring before the first element not satisfying the specified condition.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "to_bag"></a>
+<strong>to_bag(a[, from[, to]])</strong>
+</dt>
+<dd>
+<p>Creates a bag from a range of elements of an array.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+<span class="types"><span class="type">table</span></span>
+an array to create a set from.
+</li>
+<li><span class="parameter">from</span>
+<span class="types"><span class="type">integer</span></span>
+the starting index of the range.
+(<em>optional</em>)
+</li>
+<li><span class="parameter">to</span>
+<span class="types"><span class="type">integer</span></span>
+the ending index of the range.
+(<em>optional</em>)
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">table</span></span>
+containing the elements of the input array TODO
+</ol>
+
+
+</dd>
+<dt>
+<a name = "to_map"></a>
+<strong>to_map(a[, from[, to[, f]]])</strong>
+</dt>
+<dd>
+<p>Creates a map from a range of elements of an array.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+<span class="types"><span class="type">table</span></span>
+an array to create a set from.
+</li>
+<li><span class="parameter">from</span>
+<span class="types"><span class="type">integer</span></span>
+the starting index of the range.
+(<em>optional</em>)
+</li>
+<li><span class="parameter">to</span>
+<span class="types"><span class="type">integer</span></span>
+the ending index of the range.
+(<em>optional</em>)
+</li>
+<li><span class="parameter">f</span>
+<span class="types"><span class="type">function</span></span>
+function used to calculate the map values.
+(<em>optional</em>)
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">table</span></span>
+a map whose keys are the value of the input array, and the values are the result of the application of <code>f</code>.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "to_set"></a>
+<strong>to_set(a[, from[, to]])</strong>
+</dt>
+<dd>
+<p>Creates a set from a range of elements of an array.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+<span class="types"><span class="type">table</span></span>
+an array to create a set from.
+</li>
+<li><span class="parameter">from</span>
+<span class="types"><span class="type">integer</span></span>
+the starting index of the range.
+(<em>optional</em>)
+</li>
+<li><span class="parameter">to</span>
+<span class="types"><span class="type">integer</span></span>
+the ending index of the range.
+(<em>optional</em>)
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">table</span></span>
+a set containing the elements of the input array.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "to_string"></a>
+<strong>to_string(a[, from[, to]])</strong>
+</dt>
+<dd>
+<p>Returns the string representation of a range of elements of an array.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+<span class="types"><span class="type">table</span></span>
+an array.
+</li>
+<li><span class="parameter">from</span>
+<span class="types"><span class="type">integer</span></span>
+the starting index of the range.
+(<em>optional</em>)
+</li>
+<li><span class="parameter">to</span>
+<span class="types"><span class="type">integer</span></span>
+the ending index of the range.
+(<em>optional</em>)
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">string</span></span>
+the string representing the specified range of elements.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "values"></a>
+<strong>values(a[, from[, to]])</strong>
+</dt>
+<dd>
+<p>Returns an iterator over a specified range of elements of an array.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a</span>
+<span class="types"><span class="type">table</span></span>
+an array to return the iterator of.
+</li>
+<li><span class="parameter">from</span>
+<span class="types"><span class="type">integer</span></span>
+the starting index of the range.
+(<em>optional</em>)
+</li>
+<li><span class="parameter">to</span>
+<span class="types"><span class="type">integer</span></span>
+the ending index of the range.
+(<em>optional</em>)
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">function</span></span>
+an iterator.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "with"></a>
+<strong>with(n, f)</strong>
+</dt>
+<dd>
+<p>Creates an array of the specified length using a generator function.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">n</span>
+<span class="types"><span class="type">integer</span></span>
+the length of the array to generate.
+</li>
+<li><span class="parameter">f</span>
+<span class="types"><span class="type">function</span></span>
+a generator function used to generate the elements of the array; the argument of the function is the index of the element being generated.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">table</span></span>
+an array of the specified length.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "zip"></a>
+<strong>zip(a1, a2, f)</strong>
+</dt>
+<dd>
+<p>Applies a specified function to the corresponding elements of two arrays, and returns the resulting elements.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">a1</span>
+<span class="types"><span class="type">table</span></span>
+the first array to merge.
+</li>
+<li><span class="parameter">a2</span>
+<span class="types"><span class="type">table</span></span>
+the second array to merge.
+</li>
+<li><span class="parameter">f</span>
+<span class="types"><span class="type">function</span></span>
+a function that specifies how to merge the elements from the two arrays.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">table</span></span>
+an array containing merged elements of the input arrays.
+</ol>
+
+
+</dd>
+</dl>
+<h2 class="section-header "><a name="Function_Types"></a>Function Types </h2>
+
+<dl class="function">
+<dt>
+<a name = "comparer"></a>
+<strong>comparer(x, y)</strong>
+</dt>
+<dd>
+<p>Compares two elements and returns a value indicating whether one is less than, equal to, or greater than the other.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">x</span>
+the first element to compare.
+</li>
+<li><span class="parameter">y</span>
+the second element to compare.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">int</span></span>
+a signed integer that indicates the relative values of x and y, as shown in the following table
+</ol>
+
+
+</dd>
+<dt>
+<a name = "eq_comparer"></a>
+<strong>eq_comparer(x, y)</strong>
+</dt>
+<dd>
+<p>Compares two elements for equality.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">x</span>
+the first element to compare.
+</li>
+<li><span class="parameter">y</span>
+the second element to compare.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">boolean</span></span>
+<code>true</code> if the specified objects are equal; <code>false</code> otherwise.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "key_selector"></a>
+<strong>key_selector(x, i)</strong>
+</dt>
+<dd>
+<p>Signature of a key selector function.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">x</span>
+the array element.
+</li>
+<li><span class="parameter">i</span>
+<span class="types"><span class="type">integer</span></span>
+the element's index.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+any value that can be used as a table key.
+</ol>
+
+
+</dd>
+<dt>
+<a name = "predicate"></a>
+<strong>predicate(x, i)</strong>
+</dt>
+<dd>
+<p>Tests an array element for a condition.</p>
+<h3>Parameters:</h3>
+<ul>
+<li><span class="parameter">x</span>
+the array element to be tested.
+</li>
+<li><span class="parameter">i</span>
+<span class="types"><span class="type">integer</span></span>
+the index of the array element.
+</li>
+</ul>
+
+<h3>Returns:</h3>
+<ol>
+
+<span class="types"><span class="type">boolean</span></span>
+<code>true</code> if the element satisfies the condition, <code>false</code> otherwise.
+</ol>
+
+
+</dd>
+</dl>
+
+
+</div><!-- id="content" -->
+</div><!-- id="main" -->
+</div><!-- id="container" -->
+</body>
+</html>
