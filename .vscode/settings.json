@@ -17,12 +17,8 @@
     "**/*.obj": true,
     "**/CVS": true
   },
-  "Lua.runtime.path": [
-    "?.lua",
-    "?/init.lua",
-    "?/?.lua",
-    "./src/?.lua",
-    "./src/?/init.lua",
-    "./src/?/?.lua"
+  "cSpell.customWorkspaceDictionaries": [
+    "project-dict",
+    "lua-dict"
   ]
 }
