@@ -316,6 +316,9 @@ describe("#tablex", function()
     end)
     it("should return false if the key is not in the table", function()
       assert.is_false(tablex.contains_key(apple(), 'not_a_key'))
+      assert.is_false(tablex.contains_key(apple(), 'not_a_key', function(x, y)
+        return x == y
+      end))
     end)
   end)
   describe("tostring", function()
@@ -324,6 +327,15 @@ describe("#tablex", function()
       assert.not_nil(s:find("['color']='red'", 1, true))
       assert.not_nil(s:find("['name']='apple'", 1, true))
       assert.not_nil(s:find("['price']=200", 1, true))
+    end)
+    it("should convert a table into a string", function()
+      local t = {}
+      t.a = 1
+      t.b = "'s'"
+      t.c = {}
+      t.c.a = {1, 2, 3}
+      local s = tablex.to_string(t)
+      assert.equal("{['a']=1,['b']=\"'s'\",['c']={['a']={[1]=1,[2]=2,[3]=3}}}", s)
     end)
   end)
 end)

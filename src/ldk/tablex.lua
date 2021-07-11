@@ -508,8 +508,10 @@ function to_string(t)
     end
     seen[tt] = true
 
+    local kk = keys(tt, true)
     b[#b + 1] = '{'
-    for k, v in pairs(tt) do
+    for _, k in pairs(kk) do
+      local v = tt[k]
       b[#b + 1] = '['
       add_value(k)
       b[#b + 1] = ']='
