@@ -582,27 +582,37 @@ function format(s, ...)
 end
 
 local EscapeSequences = {
-  single_quote = {
-    ['\a'] = '\\a',
-    ['\b'] = '\\b',
-    ['\f'] = '\\f',
-    ['\n'] = '\\n',
-    ['\r'] = '\\r',
-    ['\t'] = '\\t',
-    ['\v'] = '\\v',
-    ['\''] = '\\\''
-  },
-  double_quote = {
-    ['\a'] = '\\a',
-    ['\b'] = '\\b',
-    ['\f'] = '\\f',
-    ['\n'] = '\\n',
-    ['\r'] = '\\r',
-    ['\t'] = '\\t',
-    ['\v'] = '\\v',
-    ['"'] = '\\\"'
-  }
+  ['\a'] = '\\a',
+  ['\b'] = '\\b',
+  ['\f'] = '\\f',
+  ['\n'] = '\\n',
+  ['\r'] = '\\r',
+  ['\t'] = '\\t',
+  ['\v'] = '\\v',
 }
+local UnescapeSequences = {
+  ['\\a'] = '\a',
+  ['\\b'] = '\b',
+  ['\\f'] = '\f',
+  ['\\n'] = '\n',
+  ['\\r'] = '\r',
+  ['\\t'] = '\t',
+  ['\\v'] = '\v',
+}
+
+--- Escapes a minimal set of control codes by replacing them with their escape codes.
+-- @tparam string s the string to escape.
+-- @treturn string the escaped string.
+function escape(s)
+  return s:gsub('.', EscapeSequences)
+end
+
+--- Converts any escaped characters in a given string.
+-- @tparam string s the string to convert.
+-- @treturn string a string with any escaped characters converted to their unescaped value.
+function unescape(s)
+  return s:gsub('.', UnescapeSequences)
+end
 
 --- Wraps a given string in the appropriate pair of quote characters.
 -- @tparam string s the string to wrap.
