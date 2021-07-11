@@ -604,9 +604,18 @@ local EscapeSequences = {
   }
 }
 
-function smart_quotes(s, double)
-  local repl = double and EscapeSequences.double_quote or EscapeSequences.single_quote
-  return ("'%s'"):format(s:gsub('.', repl))
+--- Wraps a given string in the appropriate pair of quote characters.
+-- @tparam string s the string to wrap.
+-- @tparam string the input string wrapped in quote characters.
+function smart_quotes(s)
+  local has_single = s:find("'", 1, true)
+  local has_double = s:find('"', 1, true)
+  if has_single and has_double then
+    return ('[[%s]]'):format(s)
+  elseif has_single then
+    return ('"%s"'):format(s)
+  end
+  return ("'%s'"):format(s)
 end
 
 --- Function Types
